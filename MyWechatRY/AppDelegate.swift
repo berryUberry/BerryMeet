@@ -11,7 +11,7 @@ import UIKit
 //var identifier:String?
 //var token:String?
 let portrait:String = "http://b.hiphotos.baidu.com/image/h%3D200/sign=0afb9ebc4c36acaf46e091fc4cd88d03/bd3eb13533fa828b670a4066fa1f4134970a5a0e.jpg"
-let ip:String = "http://42.96.155.17:3000"
+let ip:String = "http://42.96.155.17:3000/mobile"
 var userDefault = NSUserDefaults.standardUserDefaults()
 
 

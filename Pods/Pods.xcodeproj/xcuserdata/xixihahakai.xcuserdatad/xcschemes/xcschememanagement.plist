@@ -9,10 +9,30 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>XMSegmentedControl-XMSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>XMSegmentedControl.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1469924FC52F60B0068FA24EEFCB3EFC</key>
+		<key>09943137238C904A2DE408CA5825589C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5BFDC7607D48B0D34098E4C780EDC533</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9C87A1E07B8BEF2F41026A2BF8547FBF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

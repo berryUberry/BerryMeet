@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		235AB7F3290E897F74F20C87 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 107D4CE362DEF2D2C1D5F730 /* libPods.a */; };
-		D50D0E791CE07C96008EB745 /* CircleOfFriends.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D0E781CE07C96008EB745 /* CircleOfFriends.swift */; };
-		D50D0E7B1CE07DF2008EB745 /* CircleOfFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D0E7A1CE07DF2008EB745 /* CircleOfFriendsViewController.swift */; };
-		D50D0E7D1CE07E53008EB745 /* CircleOfFriendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50D0E7C1CE07E53008EB745 /* CircleOfFriendModel.swift */; };
+		D50AA7711CFC49B50011CD96 /* mainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50AA7701CFC49B50011CD96 /* mainViewController.swift */; };
+		D50AA7731CFC52CF0011CD96 /* DynamicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50AA7721CFC52CF0011CD96 /* DynamicCell.swift */; };
+		D50AA7751CFC59870011CD96 /* DynamicModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50AA7741CFC59870011CD96 /* DynamicModel.swift */; };
+		D50AA7791CFC98120011CD96 /* DynamicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D50AA7781CFC98120011CD96 /* DynamicCell.xib */; };
 		D50DE3E71CE1DB55001FE28F /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50DE3E61CE1DB55001FE28F /* UserViewController.swift */; };
 		D50EB7ED1CDC87F30099E4FC /* HelloVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50EB7EC1CDC87F30099E4FC /* HelloVIewController.swift */; };
 		D50EB7EF1CDC89D40099E4FC /* PageControlModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50EB7EE1CDC89D40099E4FC /* PageControlModel.swift */; };
@@ -27,15 +27,16 @@
 		D523DE4F1CCCECB70052C1F2 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D523DE4E1CCCECB70052C1F2 /* Podfile */; };
 		D5850C2E1CE403C600953C8D /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5850C2D1CE403C600953C8D /* AddFriendsViewController.swift */; };
 		D5850C301CE40F7000953C8D /* AddFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5850C2F1CE40F7000953C8D /* AddFriendsCell.swift */; };
+		F5564A1AFE5337D80DD6D958 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F72FD5E3B1BDD6616BE82E33 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		107D4CE362DEF2D2C1D5F730 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		70E7D55428B87FACB4F3EA83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7BDE8C24C363DFFC6B8A2A44 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		D50D0E781CE07C96008EB745 /* CircleOfFriends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleOfFriends.swift; sourceTree = "<group>"; };
-		D50D0E7A1CE07DF2008EB745 /* CircleOfFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleOfFriendsViewController.swift; sourceTree = "<group>"; };
-		D50D0E7C1CE07E53008EB745 /* CircleOfFriendModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleOfFriendModel.swift; sourceTree = "<group>"; };
+		D50AA7701CFC49B50011CD96 /* mainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mainViewController.swift; sourceTree = "<group>"; };
+		D50AA7721CFC52CF0011CD96 /* DynamicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicCell.swift; sourceTree = "<group>"; };
+		D50AA7741CFC59870011CD96 /* DynamicModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicModel.swift; sourceTree = "<group>"; };
+		D50AA7781CFC98120011CD96 /* DynamicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicCell.xib; sourceTree = "<group>"; };
 		D50DE3E61CE1DB55001FE28F /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		D50EB7EC1CDC87F30099E4FC /* HelloVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelloVIewController.swift; sourceTree = "<group>"; };
 		D50EB7EE1CDC89D40099E4FC /* PageControlModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageControlModel.swift; sourceTree = "<group>"; };
@@ -55,6 +56,7 @@
 		D523DE501CCCF26D0052C1F2 /* MyWechatRY-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyWechatRY-Bridging-Header.h"; sourceTree = "<group>"; };
 		D5850C2D1CE403C600953C8D /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		D5850C2F1CE40F7000953C8D /* AddFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsCell.swift; sourceTree = "<group>"; };
+		F72FD5E3B1BDD6616BE82E33 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				235AB7F3290E897F74F20C87 /* libPods.a in Frameworks */,
+				F5564A1AFE5337D80DD6D958 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,7 +76,8 @@
 			children = (
 				D51640301CDC655000262C70 /* FriendCell.swift */,
 				D5850C2F1CE40F7000953C8D /* AddFriendsCell.swift */,
-				D50D0E781CE07C96008EB745 /* CircleOfFriends.swift */,
+				D50AA7721CFC52CF0011CD96 /* DynamicCell.swift */,
+				D50AA7781CFC98120011CD96 /* DynamicCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -84,7 +87,7 @@
 			children = (
 				D51640341CDC682100262C70 /* Friends.swift */,
 				D50EB7EE1CDC89D40099E4FC /* PageControlModel.swift */,
-				D50D0E7C1CE07E53008EB745 /* CircleOfFriendModel.swift */,
+				D50AA7741CFC59870011CD96 /* DynamicModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -114,11 +117,11 @@
 				D523DE3A1CCCEBDA0052C1F2 /* AppDelegate.swift */,
 				D50EB7EC1CDC87F30099E4FC /* HelloVIewController.swift */,
 				D50EB7F01CDC8A1A0099E4FC /* LoginViewController.swift */,
+				D50AA7701CFC49B50011CD96 /* mainViewController.swift */,
 				D50FBE641CCDF84700AD9A2F /* ConversationListViewController.swift */,
 				D50FBE621CCDE96E00AD9A2F /* ConversationViewController.swift */,
 				D51640321CDC65C600262C70 /* FriendViewController.swift */,
 				D5850C2D1CE403C600953C8D /* AddFriendsViewController.swift */,
-				D50D0E7A1CE07DF2008EB745 /* CircleOfFriendsViewController.swift */,
 				D50DE3E61CE1DB55001FE28F /* UserViewController.swift */,
 				D516402D1CDC651800262C70 /* Model */,
 				D50AA7411CEEE54D0011CD96 /* Cell */,
@@ -143,7 +146,7 @@
 		F900CC6F667CEAE44116EF35 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				107D4CE362DEF2D2C1D5F730 /* libPods.a */,
+				F72FD5E3B1BDD6616BE82E33 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				D523DE451CCCEBDA0052C1F2 /* LaunchScreen.storyboard in Resources */,
 				D523DE421CCCEBDA0052C1F2 /* Assets.xcassets in Resources */,
 				D523DE4F1CCCECB70052C1F2 /* Podfile in Resources */,
+				D50AA7791CFC98120011CD96 /* DynamicCell.xib in Resources */,
 				D523DE401CCCEBDA0052C1F2 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,15 +278,15 @@
 			files = (
 				D50EB7F11CDC8A1A0099E4FC /* LoginViewController.swift in Sources */,
 				D50EB7EF1CDC89D40099E4FC /* PageControlModel.swift in Sources */,
+				D50AA7711CFC49B50011CD96 /* mainViewController.swift in Sources */,
 				D50FBE651CCDF84700AD9A2F /* ConversationListViewController.swift in Sources */,
+				D50AA7751CFC59870011CD96 /* DynamicModel.swift in Sources */,
+				D50AA7731CFC52CF0011CD96 /* DynamicCell.swift in Sources */,
 				D5850C301CE40F7000953C8D /* AddFriendsCell.swift in Sources */,
-				D50D0E7B1CE07DF2008EB745 /* CircleOfFriendsViewController.swift in Sources */,
 				D51640351CDC682100262C70 /* Friends.swift in Sources */,
-				D50D0E7D1CE07E53008EB745 /* CircleOfFriendModel.swift in Sources */,
 				D5850C2E1CE403C600953C8D /* AddFriendsViewController.swift in Sources */,
 				D523DE3B1CCCEBDA0052C1F2 /* AppDelegate.swift in Sources */,
 				D50DE3E71CE1DB55001FE28F /* UserViewController.swift in Sources */,
-				D50D0E791CE07C96008EB745 /* CircleOfFriends.swift in Sources */,
 				D50EB7ED1CDC87F30099E4FC /* HelloVIewController.swift in Sources */,
 				D50FBE631CCDE96E00AD9A2F /* ConversationViewController.swift in Sources */,
 				D51640311CDC655000262C70 /* FriendCell.swift in Sources */,

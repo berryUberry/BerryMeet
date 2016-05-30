@@ -1,10 +1,13 @@
 PODS:
   - RongCloudIMKit (2.5.0)
+  - XMSegmentedControl (0.1.4)
 
 DEPENDENCIES:
   - RongCloudIMKit
+  - XMSegmentedControl
 
 SPEC CHECKSUMS:
   RongCloudIMKit: 3d8473f022c7588db80ef81caf0208e5c2fa4789
+  XMSegmentedControl: 51cf4f3daf14920692a064d9252aa7b29622dda6
 
 COCOAPODS: 0.39.0
