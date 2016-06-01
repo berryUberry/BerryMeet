@@ -60,10 +60,9 @@
             </objects>
             <point key="canvasLocation" x="693" y="136"/>
         </scene>
-        <!--Moments-->
+        <!--Meets-->
         <scene sceneID="dr4-dE-cNL">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Z3L-TM-2hL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="gXj-4T-WN8" customClass="mainViewController" customModule="MyWechatRY" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="34c-bb-GKs"/>
@@ -74,14 +73,15 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Moments" id="9xO-Fo-9JM">
+                    <navigationItem key="navigationItem" title="Meets" id="9xO-Fo-9JM">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="GK5-f8-I5T">
                             <connections>
-                                <action selector="addCircle:" destination="gXj-4T-WN8" id="SAj-Gk-Y4D"/>
+                                <segue destination="eMd-MF-JSl" kind="show" id="8gw-Da-0Ws"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z3L-TM-2hL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="43" y="1486"/>
         </scene>
@@ -280,7 +280,7 @@
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9W-dW-w6Z">
                                                             <rect key="frame" x="399" y="7" width="60" height="29"/>
-                                                            <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <color key="backgroundColor" red="0.26506683650000001" green="0.5568627451" blue="0.50686411919999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             <state key="normal" title="add">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
@@ -437,6 +437,102 @@
             </objects>
             <point key="canvasLocation" x="803" y="828"/>
         </scene>
+        <!--发布-->
+        <scene sceneID="IBD-vU-ZJp">
+            <objects>
+                <viewController id="eMd-MF-JSl" customClass="PublishViewController" customModule="MyWechatRY" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tg8-1M-lm8"/>
+                        <viewControllerLayoutGuide type="bottom" id="5a6-gi-Smm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tBb-ex-5YX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="话题：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mKF-Nd-O29">
+                                <rect key="frame" x="28" y="91" width="60" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="U79-gh-ZpD"/>
+                                    <constraint firstAttribute="height" constant="21" id="euw-QC-9N5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gpt-Zc-Ay4">
+                                <rect key="frame" x="120" y="86" width="90" height="31.5"/>
+                                <color key="backgroundColor" red="0.26506683650000001" green="0.5568627451" blue="0.50686411919999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="添加">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="publishTheme:" destination="eMd-MF-JSl" eventType="touchUpInside" id="G5Y-zU-ywp"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="内容：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qku-yP-YKA">
+                                <rect key="frame" x="28" y="139" width="60" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请选择一个话题并输入详细内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEc-s4-4xc">
+                                <rect key="frame" x="112" y="147" width="460" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="syd-FA-lok">
+                                <rect key="frame" x="109" y="139" width="463" height="217"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gpt-Zc-Ay4" firstAttribute="height" secondItem="mKF-Nd-O29" secondAttribute="height" multiplier="3:2" id="1OJ-IB-0tX"/>
+                            <constraint firstItem="5a6-gi-Smm" firstAttribute="top" secondItem="syd-FA-lok" secondAttribute="bottom" constant="200" id="2VZ-uj-2XX"/>
+                            <constraint firstItem="Qku-yP-YKA" firstAttribute="height" secondItem="mKF-Nd-O29" secondAttribute="height" id="A1s-sj-zOr"/>
+                            <constraint firstItem="gpt-Zc-Ay4" firstAttribute="width" secondItem="mKF-Nd-O29" secondAttribute="width" multiplier="3:2" id="AMp-C7-sav"/>
+                            <constraint firstItem="EEc-s4-4xc" firstAttribute="top" secondItem="Qku-yP-YKA" secondAttribute="top" id="HdO-bT-xZz"/>
+                            <constraint firstItem="gpt-Zc-Ay4" firstAttribute="centerY" secondItem="mKF-Nd-O29" secondAttribute="centerY" id="J3U-hq-iVQ"/>
+                            <constraint firstItem="EEc-s4-4xc" firstAttribute="leading" secondItem="gpt-Zc-Ay4" secondAttribute="leading" id="JZ7-l3-fR2"/>
+                            <constraint firstItem="EEc-s4-4xc" firstAttribute="top" secondItem="syd-FA-lok" secondAttribute="top" constant="8" id="Jgk-JX-aal"/>
+                            <constraint firstItem="mKF-Nd-O29" firstAttribute="leading" secondItem="tBb-ex-5YX" secondAttribute="leadingMargin" constant="8" id="Ptp-Ma-YkI"/>
+                            <constraint firstItem="Qku-yP-YKA" firstAttribute="leading" secondItem="mKF-Nd-O29" secondAttribute="leading" id="RUa-9h-eiX"/>
+                            <constraint firstItem="EEc-s4-4xc" firstAttribute="leading" secondItem="syd-FA-lok" secondAttribute="leading" constant="3" id="Uh8-j1-S5B"/>
+                            <constraint firstItem="syd-FA-lok" firstAttribute="leading" secondItem="Qku-yP-YKA" secondAttribute="trailing" constant="21" id="ZO8-O4-4an"/>
+                            <constraint firstItem="mKF-Nd-O29" firstAttribute="top" secondItem="tg8-1M-lm8" secondAttribute="bottom" constant="27" id="cCy-og-SBX"/>
+                            <constraint firstItem="gpt-Zc-Ay4" firstAttribute="leading" secondItem="mKF-Nd-O29" secondAttribute="trailing" constant="32" id="h1k-dO-RMv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="EEc-s4-4xc" secondAttribute="trailing" constant="8" id="iGL-u0-65P"/>
+                            <constraint firstItem="Qku-yP-YKA" firstAttribute="top" secondItem="mKF-Nd-O29" secondAttribute="bottom" constant="27" id="qLf-qk-xQ8"/>
+                            <constraint firstItem="syd-FA-lok" firstAttribute="top" secondItem="Qku-yP-YKA" secondAttribute="top" id="xVJ-CA-ghN"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="syd-FA-lok" secondAttribute="trailing" constant="8" id="yW9-6s-M7A"/>
+                            <constraint firstItem="Qku-yP-YKA" firstAttribute="width" secondItem="mKF-Nd-O29" secondAttribute="width" id="zOi-iU-q7i"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="HdO-bT-xZz"/>
+                                <exclude reference="JZ7-l3-fR2"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="发布" id="VIs-sg-Q81">
+                        <barButtonItem key="rightBarButtonItem" title="发布" id="gtG-bE-7VF"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="addButton" destination="gpt-Zc-Ay4" id="3SD-xt-2cv"/>
+                        <outlet property="informationLabel" destination="EEc-s4-4xc" id="ySR-gV-8aH"/>
+                        <outlet property="publishButton" destination="gtG-bE-7VF" id="aDe-52-FOh"/>
+                        <outlet property="textContent" destination="syd-FA-lok" id="GzY-C2-HhU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p2b-R1-Nwq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="789" y="1486"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="GKL-vh-QcX">
             <objects>
@@ -495,11 +591,11 @@
             </objects>
             <point key="canvasLocation" x="-590" y="822"/>
         </scene>
-        <!--Moments-->
+        <!--Meets-->
         <scene sceneID="1YO-Xc-Wcn">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZqA-uI-kTb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Moments" image="image_32x32" id="h0o-Iv-O6I"/>
+                    <tabBarItem key="tabBarItem" title="Meets" image="image_32x32" id="h0o-Iv-O6I"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="EgJ-GR-b4r">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -770,7 +866,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DUz-0J-XeJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-590" y="2197"/>
+            <point key="canvasLocation" x="-590" y="2288"/>
         </scene>
     </scenes>
     <resources>

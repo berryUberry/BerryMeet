@@ -13,11 +13,11 @@ class DynamicCell:UITableViewCell {
     @IBOutlet weak var userPortrait:UIImageView!
     @IBOutlet weak var userName:UIButton!
     @IBOutlet weak var dynamicContent:UILabel!
-    @IBOutlet weak var thumbUp:UIImageView!
+    @IBOutlet weak var thumbUp:UIButton!
     @IBOutlet weak var thumbUpNumber:UILabel!
-    @IBOutlet weak var join:UIImageView!
+    @IBOutlet weak var join:UIButton!
     @IBOutlet weak var joinNumber:UILabel!
-    @IBOutlet weak var comments:UIImageView!
+    @IBOutlet weak var comments:UIButton!
     @IBOutlet weak var commentsNumber:UILabel!
 
 }

@@ -20,6 +20,7 @@
 		D51640311CDC655000262C70 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51640301CDC655000262C70 /* FriendCell.swift */; };
 		D51640331CDC65C600262C70 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51640321CDC65C600262C70 /* FriendViewController.swift */; };
 		D51640351CDC682100262C70 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51640341CDC682100262C70 /* Friends.swift */; };
+		D51895F11CFD7C1200DDA919 /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51895F01CFD7C1200DDA919 /* PublishViewController.swift */; };
 		D523DE3B1CCCEBDA0052C1F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523DE3A1CCCEBDA0052C1F2 /* AppDelegate.swift */; };
 		D523DE401CCCEBDA0052C1F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D523DE3E1CCCEBDA0052C1F2 /* Main.storyboard */; };
 		D523DE421CCCEBDA0052C1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D523DE411CCCEBDA0052C1F2 /* Assets.xcassets */; };
@@ -46,13 +47,14 @@
 		D51640301CDC655000262C70 /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		D51640321CDC65C600262C70 /* FriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		D51640341CDC682100262C70 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
+		D51895F01CFD7C1200DDA919 /* PublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
 		D523DE371CCCEBDA0052C1F2 /* MyWechatRY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWechatRY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D523DE3A1CCCEBDA0052C1F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D523DE3F1CCCEBDA0052C1F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D523DE411CCCEBDA0052C1F2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D523DE441CCCEBDA0052C1F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D523DE461CCCEBDA0052C1F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D523DE4E1CCCECB70052C1F2 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		D523DE4E1CCCECB70052C1F2 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D523DE501CCCF26D0052C1F2 /* MyWechatRY-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyWechatRY-Bridging-Header.h"; sourceTree = "<group>"; };
 		D5850C2D1CE403C600953C8D /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		D5850C2F1CE40F7000953C8D /* AddFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsCell.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				D50EB7EC1CDC87F30099E4FC /* HelloVIewController.swift */,
 				D50EB7F01CDC8A1A0099E4FC /* LoginViewController.swift */,
 				D50AA7701CFC49B50011CD96 /* mainViewController.swift */,
+				D51895F01CFD7C1200DDA919 /* PublishViewController.swift */,
 				D50FBE641CCDF84700AD9A2F /* ConversationListViewController.swift */,
 				D50FBE621CCDE96E00AD9A2F /* ConversationViewController.swift */,
 				D51640321CDC65C600262C70 /* FriendViewController.swift */,
@@ -288,6 +291,7 @@
 				D523DE3B1CCCEBDA0052C1F2 /* AppDelegate.swift in Sources */,
 				D50DE3E71CE1DB55001FE28F /* UserViewController.swift in Sources */,
 				D50EB7ED1CDC87F30099E4FC /* HelloVIewController.swift in Sources */,
+				D51895F11CFD7C1200DDA919 /* PublishViewController.swift in Sources */,
 				D50FBE631CCDE96E00AD9A2F /* ConversationViewController.swift in Sources */,
 				D51640311CDC655000262C70 /* FriendCell.swift in Sources */,
 				D51640331CDC65C600262C70 /* FriendViewController.swift in Sources */,
@@ -409,7 +413,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MyWechatRY/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xihakai.berryChat;
+				PRODUCT_BUNDLE_IDENTIFIER = xihakai.berryMeet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyWechatRY/MyWechatRY-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -424,7 +428,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = MyWechatRY/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = xihakai.berryChat;
+				PRODUCT_BUNDLE_IDENTIFIER = xihakai.berryMeet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "MyWechatRY/MyWechatRY-Bridging-Header.h";
 			};
