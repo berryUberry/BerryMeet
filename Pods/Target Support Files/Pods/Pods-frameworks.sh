@@ -84,8 +84,16 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/HappyDNS.framework"
+  install_framework "Pods/Qiniu.framework"
+  install_framework "Pods/SnapKit.framework"
   install_framework "Pods/XMSegmentedControl.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods/AFNetworking.framework"
+  install_framework "Pods/HappyDNS.framework"
+  install_framework "Pods/Qiniu.framework"
+  install_framework "Pods/SnapKit.framework"
   install_framework "Pods/XMSegmentedControl.framework"
 fi

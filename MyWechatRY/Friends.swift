@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Friends{
+class Friends:NSObject,NSCoding{
 
     var id:String!
     var name:String!
@@ -31,7 +31,7 @@ class Friends{
         
     }
     
-    init(coder decoder:NSCoder){
+    required init(coder decoder:NSCoder){
         id = decoder.decodeObjectForKey("id") as! String
         name = decoder.decodeObjectForKey("name") as! String
         portrait = decoder.decodeObjectForKey("portrait") as! String

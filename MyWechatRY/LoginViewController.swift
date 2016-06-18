@@ -338,14 +338,56 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 
                 
                 let status = dic.objectForKey("status") as! String
-                
+                print(dic)
                 
                 
                 switch status {
                 case "200":
                     print("登录成功")
                     
+                    let userInfo = dic.objectForKey("userInfo") as! NSDictionary
                     
+                    let userIsDefaultAvatar = userInfo.objectForKey("isDefaultAvatar") as! Bool
+                    
+                    if userIsDefaultAvatar == true{
+                        userDefault.setObject("", forKey: "portrait")
+                    }else{
+                        let headImage = userInfo.objectForKey("avatarURL") as! String
+                        let headImageURL = "\(avatarURLHeader)\(headImage)?v=9999999999"
+                        userDefault.setObject(headImageURL, forKey: "portrait")
+                    }
+                    let follow_infos = userInfo.objectForKey("follow_infos") as! Array<NSDictionary>
+                    
+                    for i in follow_infos{
+
+//                        let portrait = i.objectForKey("avatarURL") as! String
+//                        let friends = Friends(id: name, name: name, portrait: portrait)
+//                        friendsList.append(friends)
+                        
+                        
+                        let name = i.objectForKey("_id") as! String
+                        
+                        let isDefaultAvatar = i.objectForKey("isDefaultAvatar") as! Bool
+                        if isDefaultAvatar == false{
+                            var avatarURL = i.objectForKey("avatarURL") as! String
+                            avatarURL = "\(avatarURLHeader)\(avatarURL)?v=9999999999"
+                            let friend = Friends(id: name, name: name, portrait: avatarURL)
+                            friendsList.append(friend)
+                            
+                        }else{
+                            
+                            let friend = Friends(id: name, name: name, portrait: portrait)
+                            friendsList.append(friend)
+                        }
+
+                        
+                        
+                    }
+                    friendFlag = false
+                    //实例对象转换成NSData
+                    let modelData:NSData = NSKeyedArchiver.archivedDataWithRootObject(friendsList)
+                    //存储NSData对象
+                    userDefault.setObject(modelData, forKey: "\(accountTextField.text!)friendsList")
                     
                     
                     
@@ -367,6 +409,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     let dict:AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                     let dic = dict as! NSDictionary
                     
+                    
                     let status = dic.objectForKey("status") as! String
                     
                     switch status {
@@ -376,7 +419,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                         userDefault.setObject(token, forKey: "token")
                         
                         userDefault.setObject(self.accountTextField.text!, forKey: "identifier")
-                        userDefault.setObject(nil, forKey: "portrait")
+                        
                         dispatch_async(dispatch_get_main_queue(), {
                             self.waitView.layer.hidden = true
                             self.waitButton.layer.hidden = true
@@ -389,7 +432,28 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                         
                     case "110":
                         print("token获取失败")
+                        friendsList.removeAll()
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.waitView.layer.hidden = true
+                            self.waitButton.layer.hidden = true
+                            self.waitIndicator.stopAnimating()
+                            self.promptView.layer.hidden = false
+                            self.promptLabel.text = "token获取失败"
+                            self.promptLabel.numberOfLines = 2
+                            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:  #selector(LoginViewController.prompt), userInfo: nil, repeats: true)
+                        })
+                        
                     default:
+                        friendsList.removeAll()
+                        dispatch_async(dispatch_get_main_queue(), {
+                            self.waitView.layer.hidden = true
+                            self.waitButton.layer.hidden = true
+                            self.waitIndicator.stopAnimating()
+                            self.promptView.layer.hidden = false
+                            self.promptLabel.text = "请重新登录"
+                            self.promptLabel.numberOfLines = 2
+                            self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:  #selector(LoginViewController.prompt), userInfo: nil, repeats: true)
+                        })
                         return
                     }
                     
@@ -416,6 +480,15 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     
                     
                 default:
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.waitView.layer.hidden = true
+                        self.waitButton.layer.hidden = true
+                        self.waitIndicator.stopAnimating()
+                        self.promptView.layer.hidden = false
+                        self.promptLabel.text = "请重新登录"
+                        self.promptLabel.numberOfLines = 2
+                        self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:  #selector(LoginViewController.prompt), userInfo: nil, repeats: true)
+                    })
                     return
                 }
                 

@@ -21,6 +21,8 @@
 		D51640331CDC65C600262C70 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51640321CDC65C600262C70 /* FriendViewController.swift */; };
 		D51640351CDC682100262C70 /* Friends.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51640341CDC682100262C70 /* Friends.swift */; };
 		D51895F11CFD7C1200DDA919 /* PublishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51895F01CFD7C1200DDA919 /* PublishViewController.swift */; };
+		D51895F61CFED68000DDA919 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = D51895F51CFED68000DDA919 /* UINavigationBar+Awesome.m */; };
+		D51895F91CFED8D500DDA919 /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D51895F81CFED8D500DDA919 /* PersonalViewController.swift */; };
 		D523DE3B1CCCEBDA0052C1F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D523DE3A1CCCEBDA0052C1F2 /* AppDelegate.swift */; };
 		D523DE401CCCEBDA0052C1F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D523DE3E1CCCEBDA0052C1F2 /* Main.storyboard */; };
 		D523DE421CCCEBDA0052C1F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D523DE411CCCEBDA0052C1F2 /* Assets.xcassets */; };
@@ -48,6 +50,9 @@
 		D51640321CDC65C600262C70 /* FriendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		D51640341CDC682100262C70 /* Friends.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friends.swift; sourceTree = "<group>"; };
 		D51895F01CFD7C1200DDA919 /* PublishViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishViewController.swift; sourceTree = "<group>"; };
+		D51895F41CFED68000DDA919 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
+		D51895F51CFED68000DDA919 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
+		D51895F81CFED8D500DDA919 /* PersonalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		D523DE371CCCEBDA0052C1F2 /* MyWechatRY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyWechatRY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D523DE3A1CCCEBDA0052C1F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D523DE3F1CCCEBDA0052C1F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -94,6 +99,15 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		D51895F71CFED69800DDA919 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				D51895F41CFED68000DDA919 /* UINavigationBar+Awesome.h */,
+				D51895F51CFED68000DDA919 /* UINavigationBar+Awesome.m */,
+			);
+			name = lib;
+			sourceTree = "<group>";
+		};
 		D523DE2E1CCCEBDA0052C1F2 = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +130,7 @@
 		D523DE391CCCEBDA0052C1F2 /* MyWechatRY */ = {
 			isa = PBXGroup;
 			children = (
+				D51895F71CFED69800DDA919 /* lib */,
 				D523DE3A1CCCEBDA0052C1F2 /* AppDelegate.swift */,
 				D50EB7EC1CDC87F30099E4FC /* HelloVIewController.swift */,
 				D50EB7F01CDC8A1A0099E4FC /* LoginViewController.swift */,
@@ -126,6 +141,7 @@
 				D51640321CDC65C600262C70 /* FriendViewController.swift */,
 				D5850C2D1CE403C600953C8D /* AddFriendsViewController.swift */,
 				D50DE3E61CE1DB55001FE28F /* UserViewController.swift */,
+				D51895F81CFED8D500DDA919 /* PersonalViewController.swift */,
 				D516402D1CDC651800262C70 /* Model */,
 				D50AA7411CEEE54D0011CD96 /* Cell */,
 				D523DE3E1CCCEBDA0052C1F2 /* Main.storyboard */,
@@ -279,9 +295,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D51895F61CFED68000DDA919 /* UINavigationBar+Awesome.m in Sources */,
 				D50EB7F11CDC8A1A0099E4FC /* LoginViewController.swift in Sources */,
 				D50EB7EF1CDC89D40099E4FC /* PageControlModel.swift in Sources */,
 				D50AA7711CFC49B50011CD96 /* mainViewController.swift in Sources */,
+				D51895F91CFED8D500DDA919 /* PersonalViewController.swift in Sources */,
 				D50FBE651CCDF84700AD9A2F /* ConversationListViewController.swift in Sources */,
 				D50AA7751CFC59870011CD96 /* DynamicModel.swift in Sources */,
 				D50AA7731CFC52CF0011CD96 /* DynamicCell.swift in Sources */,

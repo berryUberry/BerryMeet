@@ -22,6 +22,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
     var partyheight = Array<CGFloat>()
     var carheight = Array<CGFloat>()
     
+    var name:String!
     
     
     var tableView1:UITableView!
@@ -34,15 +35,35 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
     }
     
     override func viewDidLoad() {
-        let a = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "monzy", dynamic: "sdfdsddhsdhdhdhdhdshkadhfjksdahfasdhjkfhasdfhsdajkfhaskjdfhaskdfhkasdflhasdkfkhasdjkfhsjadkfhjdsafhajsdkfhjaskdfhjkasdfhjasdhfeuiywuieyrfiuqweyriqweryqwejiwjefjkfhjsdgfasgdfhfjashfdhsadfhkfiuqwyeruiyerweqyiryqweuryeuwqirhjsdhfashfjkasdhfiuwyruiehfjsahfksadfjkashfyweuryhuewfhsjadfkjhdakfhsdjfhaskdfhsajdkfhakdsjfhklasdfhkjaslfdhjakdfhjkasdfhjsdkfhjkasdhfkjasdfasdhfjksdhfjsdhfjskahdfkjahsdlfjashdfahsdfjkhadfjkladhfadhfjksdhfkjsadhfjaksdfhdfiuwhefiuqhweufhuqwefhweuifheuwihfuwehfweufhuwehfuqwehfuwhqefdsjkfhaklsfjdsafhlkadjhfkhsdfhkjskdfhksdhfjskhdfkjshdfjksdhfjkasdjfhsakjdfhjksadhfjkashdfjkashfjsd", thumbUpNumber: 0,isThumbUp:false, joinNumber:0,isJoin:false, commentsNumber: 99)
-        let b = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "pt", dynamic: "sdlkfjkalsjdflajksdkfjaskldf", thumbUpNumber: 0,isThumbUp: false, joinNumber: 0, isJoin: false,commentsNumber: 0)
-        let c = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "lynn", dynamic: "asdf", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0)
+        
+        ///////////
+        
+        
+        let appDeletage = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDeletage.connectServer {
+            () -> Void in
+            
+            
+            print("连接成功")
+            
+        }
+        
+        
+        
+        
+        
+        /////////
+        
+        ////////数据模拟
+        let a = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "monzy", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 5,isThumbUp:false, joinNumber:2,isJoin:false, commentsNumber: 4)
+        let b = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "pt", dynamic: "6月20号中午12点嘉定校区到虹桥火车站，求拼车", thumbUpNumber: 0,isThumbUp: false, joinNumber: 0, isJoin: false,commentsNumber: 0)
+        let c = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "lynn", dynamic: "7月1号。。。。。。。。。。。。。。。。。。。。。。。。", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0)
         dynamicOnline.append(a)
         dynamicOnline.append(b)
         dynamicOnline.append(c)
-        let d = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "wang", dynamic: "sdfdsddhsdhdhdhdhdshkadhfjksdahfasdhjkfhasdfhsdajkfhaskjdfhaskdfhkasdflhasdkfkhasdjkfhsjadkfhjdsafhajsdkfhjaskdfhjkasdfhjasdhfeuiywuieyrfiuqweyriqweryqwejiwjefjkfhjsdgfasgdfhfjashfdhsadfhkfiuqwyeruiyerweqyiryqweuryeuwqirhjsdhfashfjkasdhfiuwyruiehfjsahfksadfjkashfyweuryhuewfhsjadf", thumbUpNumber: 0,isThumbUp: false, joinNumber:0,isJoin: false, commentsNumber: 0)
-        let e = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "berry", dynamic: "sdlkfjkalsjdflajksdkfjaskldf", thumbUpNumber: 0, isThumbUp: false,joinNumber: 6,isJoin: false, commentsNumber: 0)
-        let f = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "berry2", dynamic: "asdf", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0)
+        let d = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "wang", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0,isThumbUp: false, joinNumber:0,isJoin: false, commentsNumber: 0)
+        let e = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "berry", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0, isThumbUp: false,joinNumber: 6,isJoin: false, commentsNumber: 0)
+        let f = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "berry2", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0)
         
         
         dynamicTravel.append(d)
@@ -52,7 +73,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
         dynamicCar.append(a)
         dynamicParty.append(b)
         
-        
+        /////////////////////
         
         super.viewDidLoad()
         segmentedControl3 = XMSegmentedControl(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)! + 20, width: self.view.frame.width, height: 44), segmentTitle: ["线上", "聚会", "旅行","其他"], selectedItemHighlightStyle: XMSelectedItemHighlightStyle.TopEdge)
@@ -450,6 +471,22 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             
         }
     }
+    
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     func xmSegmentedControl(xmSegmentedControl: XMSegmentedControl, selectedSegment: Int) {
         print(selectedSegment)
         
@@ -699,46 +736,64 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
     
     func chat(btn:UIButton){
         print("chat")
-        switch btn.tag/10000 {
-            
-        case 0:
-            let conversationViewController = ConversationViewController()
-            conversationViewController.targetId = dynamicOnline[btn.tag].userName
-            conversationViewController.conversationType = .ConversationType_PRIVATE
-            conversationViewController.title = dynamicOnline[btn.tag].userName
-            self.navigationController?.pushViewController(conversationViewController, animated: true)
-            self.tabBarController?.tabBar.hidden = true
-            
-        case 1:
-            print(btn.tag)
-            let number = btn.tag - 10000
-            let conversationViewController = ConversationViewController()
-            conversationViewController.targetId = dynamicParty[number].userName
-            conversationViewController.conversationType = .ConversationType_PRIVATE
-            conversationViewController.title = dynamicParty[number].userName
-            self.navigationController?.pushViewController(conversationViewController, animated: true)
-            self.tabBarController?.tabBar.hidden = true
-        case 2:
-            let number = btn.tag - 20000
-            let conversationViewController = ConversationViewController()
-            conversationViewController.targetId = dynamicTravel[number].userName
-            conversationViewController.conversationType = .ConversationType_PRIVATE
-            conversationViewController.title = dynamicTravel[number].userName
-            self.navigationController?.pushViewController(conversationViewController, animated: true)
-            self.tabBarController?.tabBar.hidden = true
-        case 3:
-            let number = btn.tag - 30000
-            let conversationViewController = ConversationViewController()
-            conversationViewController.targetId = dynamicCar[number].userName
-            conversationViewController.conversationType = .ConversationType_PRIVATE
-            conversationViewController.title = dynamicCar[number].userName
-            self.navigationController?.pushViewController(conversationViewController, animated: true)
-            self.tabBarController?.tabBar.hidden = true
-        default:
-            return
-        }
+        print(btn.titleLabel?.text!)
+        name = btn.titleLabel?.text!
+        self.performSegueWithIdentifier("toPersonal", sender: self)
+        self.tabBarController?.tabBar.hidden = true
+        
+//        switch btn.tag/10000 {
+//            
+//        case 0:
+//            let conversationViewController = ConversationViewController()
+//            conversationViewController.targetId = dynamicOnline[btn.tag].userName
+//            conversationViewController.conversationType = .ConversationType_PRIVATE
+//            conversationViewController.title = dynamicOnline[btn.tag].userName
+//            self.navigationController?.pushViewController(conversationViewController, animated: true)
+//            self.tabBarController?.tabBar.hidden = true
+//            
+//        case 1:
+//            print(btn.tag)
+//            let number = btn.tag - 10000
+//            let conversationViewController = ConversationViewController()
+//            conversationViewController.targetId = dynamicParty[number].userName
+//            conversationViewController.conversationType = .ConversationType_PRIVATE
+//            conversationViewController.title = dynamicParty[number].userName
+//            self.navigationController?.pushViewController(conversationViewController, animated: true)
+//            self.tabBarController?.tabBar.hidden = true
+//        case 2:
+//            let number = btn.tag - 20000
+//            let conversationViewController = ConversationViewController()
+//            conversationViewController.targetId = dynamicTravel[number].userName
+//            conversationViewController.conversationType = .ConversationType_PRIVATE
+//            conversationViewController.title = dynamicTravel[number].userName
+//            self.navigationController?.pushViewController(conversationViewController, animated: true)
+//            self.tabBarController?.tabBar.hidden = true
+//        case 3:
+//            let number = btn.tag - 30000
+//            let conversationViewController = ConversationViewController()
+//            conversationViewController.targetId = dynamicCar[number].userName
+//            conversationViewController.conversationType = .ConversationType_PRIVATE
+//            conversationViewController.title = dynamicCar[number].userName
+//            self.navigationController?.pushViewController(conversationViewController, animated: true)
+//            self.tabBarController?.tabBar.hidden = true
+//        default:
+//            return
+//        }
     
     
     
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("zhunbie2")
+        if segue.identifier == "toPersonal"{
+            print("zhunbei")
+            let VC = segue.destinationViewController as! PersonalViewController
+            VC.name = name
+            print("...\(name)")
+        
+        }
+    }
+   
+
 }

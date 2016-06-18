@@ -11,6 +11,7 @@ import UIKit
 //var identifier:String?
 //var token:String?
 let portrait:String = "http://b.hiphotos.baidu.com/image/h%3D200/sign=0afb9ebc4c36acaf46e091fc4cd88d03/bd3eb13533fa828b670a4066fa1f4134970a5a0e.jpg"
+let avatarURLHeader = "http://o7b20it1b.bkt.clouddn.com/"
 let ip:String = "http://42.96.155.17:3000/mobile"
 var userDefault = NSUserDefaults.standardUserDefaults()
 
@@ -136,6 +137,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate,RCIMUserInfoDataSource,RCI
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        UITabBar.appearance().tintColor = UIColor(red: 85/255, green: 149/255, blue: 122/255, alpha: 1)
+        
         
         RCIM.sharedRCIM().userInfoDataSource = self
         

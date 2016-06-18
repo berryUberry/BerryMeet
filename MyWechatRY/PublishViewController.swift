@@ -74,6 +74,9 @@ class PublishViewController: UIViewController,UITextViewDelegate {
         publishButton.enabled = false
         informationLabel.enabled = false
         view.bringSubviewToFront(informationLabel)
+        
+
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(animated: Bool) {

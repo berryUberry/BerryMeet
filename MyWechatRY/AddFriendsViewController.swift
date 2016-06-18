@@ -14,6 +14,8 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
     var isFirst = true
     var addFriends = Array<Friends>()
     let identifierValue = String(userDefault.objectForKey("identifier")!)
+    var flag:Int!
+    
     
     var timer:NSTimer!
     var time:Int = 0
@@ -131,26 +133,35 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
             cell.userInteractionEnabled = true
             cell.addFriendsButton.hidden = false
             
-            let userPortraitFlag = userDefault.objectForKey("portrait")
-            if userPortraitFlag == nil{
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                    let imageURL = NSURL(string: portrait)
-                    let imageData = NSData(contentsOfURL: imageURL!)
-                    dispatch_async(dispatch_get_main_queue(), {
-                        let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.3)
-                        cell.portraitImage.image = UIImage(data: smallImage!)
-                        userDefault.setObject(smallImage, forKey: "portrait")
-                        print("3")
-                    })
-                    
-                }
+//            let userPortraitFlag = userDefault.objectForKey("portrait")
+            let userPortraitFlag = addFriends[indexPath.row].portrait
+            if userPortraitFlag == portrait{
+                
+                
+                cell.portraitImage.image = UIImage(named: "xixi")
             }else{
                 
                 
-                let userPortraitData:NSData = userDefault.objectForKey("portrait") as! NSData
+//                let userPortraitData:NSData = userDefault.objectForKey("portrait") as! NSData
+//
+//                let userPortrait = UIImage(data: userPortraitData)
+//                cell.portraitImage.image = userPortrait
+//                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+//                    let imageURL = NSURL(string: self.addFriends[indexPath.row].portrait)
+//                    let imageData = NSData(contentsOfURL: imageURL!)
+//                    
+//                    let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.3)
+//                    cell.portraitImage.image = UIImage(data: smallImage!)
+//                    print("3")
+//                    
+//                    
+//                }
+                let imageURL = NSURL(string: self.addFriends[indexPath.row].portrait)
+                let imageData = NSData(contentsOfURL: imageURL!)
                 
-                let userPortrait = UIImage(data: userPortraitData)
-                cell.portraitImage.image = userPortrait
+                let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.3)
+                cell.portraitImage.image = UIImage(data: smallImage!)
+                print("3")
                 
             }
             
@@ -228,9 +239,24 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
                 for i in findNameArray{
                     let name = i.objectForKey("_id") as! String
                     print(name)
-                    let friend = Friends(id: name, name: name, portrait: "http://b.hiphotos.baidu.com/image/h%3D200/sign=0afb9ebc4c36acaf46e091fc4cd88d03/bd3eb13533fa828b670a4066fa1f4134970a5a0e.jpg")
-                    addFriends.append(friend)
-                    print(addFriends)
+                    
+                    let isDefaultAvatar = i.objectForKey("isDefaultAvatar") as! Bool
+                    if isDefaultAvatar == false{
+                        var avatarURL = i.objectForKey("avatarURL") as! String
+                        avatarURL = "\(avatarURLHeader)\(avatarURL)"
+                        let friend = Friends(id: name, name: name, portrait: avatarURL)
+                        addFriends.append(friend)
+                    
+                    }else{
+                    
+                        let friend = Friends(id: name, name: name, portrait: portrait)
+                        addFriends.append(friend)
+                        print(addFriends)
+                    }
+                    
+                    
+                    
+                   
                     
                 }
                 
@@ -293,18 +319,128 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
     
     func addToFriendsList(btn:UIButton){
         
-        friendsList.append(addFriends[btn.tag])
-        friends.append(addFriends[btn.tag].id)
-        print("\(friends)yyyyyyyyyyyy")
-        userDefault.setObject(friends, forKey: "\(identifierValue)")
-        self.searchTableView.reloadData()
+        
     
+        self.waitView.hidden = false
+        self.waitIndicatotView.startAnimating()
+        flag = btn.tag
+        
+        
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            self.addFriendHttp()
+        }
+        
     }
     
     
     
     
+    func addFriendHttp(){
     
+    
+    
+        do{
+            
+            
+            var response:NSURLResponse?
+            let urlString:String = "\(ip)/app.friend.follow"
+            var url:NSURL!
+            url = NSURL(string:urlString)
+            let request = NSMutableURLRequest(URL:url)
+            let body = "account=\(identifierValue)&targetID=\(addFriends[flag].id)"
+            print(identifierValue)
+            print(addFriends[flag].id)
+            //编码POST数据
+            let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+            //保用 POST 提交
+            request.HTTPMethod = "POST"
+            request.HTTPBody = postData
+            
+            
+            let data:NSData = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
+            let dict:AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            let dic = dict as! NSDictionary
+            print(dic)
+            let status = dic.objectForKey("status") as! String
+            
+            switch status {
+            case "500":
+                print("关注成功")
+                
+                friendsList.append(addFriends[flag])
+                friends.append(addFriends[flag].id)
+                print("\(friends)yyyyyyyyyyyy")
+                userDefault.setObject(friends, forKey: "\(identifierValue)")
+                
+                ///////////
+                
+                
+                
+                //实例对象转换成NSData
+                let modelData:NSData = NSKeyedArchiver.archivedDataWithRootObject(friendsList)
+                //存储NSData对象
+                userDefault.setObject(modelData, forKey: "\(identifierValue)friendsList")
+                
+                
+                
+                
+                
+                
+                
+//                userDefault.setObject(friendsList, forKey: "\(identifierValue)friendsList")
+//                let a = userDefault.objectForKey("\(identifierValue)friendsList")
+//                print("herehereherehere")
+//                print(a)
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.waitView.hidden = true
+                    self.waitIndicatotView.stopAnimating()
+                    self.searchTableView.reloadData()
+                })
+                
+                
+                
+                
+            case "510":
+                print("关注失败")
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.waitView.hidden = true
+                    self.waitIndicatotView.stopAnimating()
+                    self.remindView.hidden = false
+                    self.remindLabel.text = "关注失败！"
+                    self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:  #selector(LoginViewController.prompt), userInfo: nil, repeats: true)
+                    
+                    
+                    //self.searchTableView.reloadData()
+                })
+                
+            default:
+                return
+            }
+            
+            
+            
+        }catch{
+            print("网络问题")
+            dispatch_async(dispatch_get_main_queue(), {
+                self.waitView.hidden = true
+                self.waitIndicatotView.stopAnimating()
+                self.remindView.hidden = false
+                self.remindLabel.text = "网络问题"
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector:  #selector(LoginViewController.prompt), userInfo: nil, repeats: true)
+            })
+            
+        }
+    
+    
+    
+    
+    
+    
+    
+    }
     
     
     
@@ -368,6 +504,11 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
         time += 1
         
     }
+    
+    
+    
+    
+    
     
     
     

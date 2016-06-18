@@ -10,7 +10,9 @@ import UIKit
 
 class ConversationViewController: RCConversationViewController {
     
-    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         

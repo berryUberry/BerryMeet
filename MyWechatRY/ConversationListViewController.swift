@@ -18,28 +18,30 @@ class ConversationListViewController: RCConversationListViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let appDeletage = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDeletage.connectServer { 
-            () -> Void in
-
+//        let appDeletage = UIApplication.sharedApplication().delegate as! AppDelegate
+//        appDeletage.connectServer { 
+//            () -> Void in
+//
+//            
+//            print("连接成功")
+//            
+//        }
+        
+        self.setDisplayConversationTypes([
             
-            print("连接成功")
-            self.setDisplayConversationTypes([
-                
-                RCConversationType.ConversationType_GROUP.rawValue,
-                RCConversationType.ConversationType_SYSTEM.rawValue,
-                RCConversationType.ConversationType_PRIVATE.rawValue,
-                RCConversationType.ConversationType_CHATROOM.rawValue,
-                RCConversationType.ConversationType_APPSERVICE.rawValue,
-                RCConversationType.ConversationType_DISCUSSION.rawValue,
-                RCConversationType.ConversationType_PUSHSERVICE.rawValue,
-                RCConversationType.ConversationType_PUBLICSERVICE.rawValue
-                
-                
-                ])
+            RCConversationType.ConversationType_GROUP.rawValue,
+            RCConversationType.ConversationType_SYSTEM.rawValue,
+            RCConversationType.ConversationType_PRIVATE.rawValue,
+            RCConversationType.ConversationType_CHATROOM.rawValue,
+            RCConversationType.ConversationType_APPSERVICE.rawValue,
+            RCConversationType.ConversationType_DISCUSSION.rawValue,
+            RCConversationType.ConversationType_PUSHSERVICE.rawValue,
+            RCConversationType.ConversationType_PUBLICSERVICE.rawValue
             
-            self.refreshConversationTableViewIfNeeded()
-        }
+            
+            ])
+        
+        self.refreshConversationTableViewIfNeeded()
         
     }
     

@@ -33,6 +33,11 @@ class HelloVIewController: UIViewController,UIScrollViewDelegate {
         
     }
     
+    
+
+    
+    
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()

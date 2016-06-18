@@ -3,3 +3,7 @@
 //
 
 #import <RongIMKit/RongIMKit.h>
+#import "UINavigationBar+Awesome.h"
+#import <Qiniu/QiniuSDK.h>
+#import <HappyDNS/HappyDNS.h>
+#import <AFNetworking/AFNetworking.h>
