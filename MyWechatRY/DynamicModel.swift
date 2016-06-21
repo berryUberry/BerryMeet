@@ -18,8 +18,12 @@ class DynamicModel{
     var joinNumber:Int!
     var isJoin:Bool!
     var commentsNumber:Int!
+    var timeShow:String!
+    var dynamicId:Int!
+    
+    var thumbUpUser:[Friends]!
 
-    init(userPortraitUrl:String,userName:String,dynamic:String,thumbUpNumber:Int,isThumbUp:Bool,joinNumber:Int,isJoin:Bool,commentsNumber:Int){
+    init(userPortraitUrl:String,userName:String,dynamic:String,thumbUpNumber:Int,isThumbUp:Bool,joinNumber:Int,isJoin:Bool,commentsNumber:Int,thumbUpUser:[Friends],timeShow:String,dynamicId:Int){
         self.userPortraitUrl = userPortraitUrl
         self.userName = userName
         self.dynamic = dynamic
@@ -28,6 +32,9 @@ class DynamicModel{
         self.commentsNumber = commentsNumber
         self.isThumbUp = isThumbUp
         self.isJoin = isJoin
+        self.thumbUpUser = thumbUpUser
+        self.timeShow = timeShow
+        self.dynamicId = dynamicId
     
     }
 

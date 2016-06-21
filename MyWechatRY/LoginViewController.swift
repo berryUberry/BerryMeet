@@ -352,9 +352,22 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     if userIsDefaultAvatar == true{
                         userDefault.setObject("", forKey: "portrait")
                     }else{
+                        let dateTime = NSDate()
+                        let timeInterval = dateTime.timeIntervalSince1970
+                        print(Int(timeInterval))
                         let headImage = userInfo.objectForKey("avatarURL") as! String
-                        let headImageURL = "\(avatarURLHeader)\(headImage)?v=9999999999"
+                        let headImageURL = "\(avatarURLHeader)\(headImage)?v=\(Int(timeInterval))"
                         userDefault.setObject(headImageURL, forKey: "portrait")
+
+                        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                            let imageURL = NSURL(string: headImageURL)
+                            let imageData = NSData(contentsOfURL: imageURL!)
+                            let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.1)
+                            
+                            userDefault.setObject(smallImage, forKey: "\(self.accountTextField.text!)Head")
+                            
+                        }
+            
                     }
                     let follow_infos = userInfo.objectForKey("follow_infos") as! Array<NSDictionary>
                     
@@ -369,10 +382,26 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                         
                         let isDefaultAvatar = i.objectForKey("isDefaultAvatar") as! Bool
                         if isDefaultAvatar == false{
+                            let dateTime = NSDate()
+                            let timeInterval = dateTime.timeIntervalSince1970
                             var avatarURL = i.objectForKey("avatarURL") as! String
-                            avatarURL = "\(avatarURLHeader)\(avatarURL)?v=9999999999"
+                            avatarURL = "\(avatarURLHeader)\(avatarURL)?v=\(Int(timeInterval))"
                             let friend = Friends(id: name, name: name, portrait: avatarURL)
                             friendsList.append(friend)
+                            
+                            
+                            
+                            
+                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                                let imageURL = NSURL(string: avatarURL)
+                                let imageData = NSData(contentsOfURL: imageURL!)
+                                let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.1)
+                                
+                                userDefault.setObject(smallImage, forKey: "\(name)Head")
+                                
+                            }
+                            
+                            
                             
                         }else{
                             

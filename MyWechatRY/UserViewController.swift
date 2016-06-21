@@ -14,6 +14,7 @@ class UserViewController: UIViewController,UIImagePickerControllerDelegate,UINav
     let identifierValue = String(userDefault.objectForKey("identifier")!)
     
     var image:NSData!
+    var changeImg:Bool = false
     @IBAction func exit(sender: AnyObject) {
         userDefault.setObject(nil, forKey: "identifier")
         userDefault.setObject(nil, forKey: "token")
@@ -54,7 +55,7 @@ class UserViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         super.viewWillAppear(animated)
         let userPortraitFlag = userDefault.objectForKey("portrait") as! String
         print(userPortraitFlag)
-        if userPortraitFlag != ""{
+        if userPortraitFlag != "" && changeImg == false{
             
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                 let imageURL = NSURL(string: userPortraitFlag)
@@ -108,7 +109,7 @@ class UserViewController: UIViewController,UIImagePickerControllerDelegate,UINav
         
         
         
-        
+        changeImg = true
         connectPost()
         
         
@@ -160,31 +161,71 @@ class UserViewController: UIViewController,UIImagePickerControllerDelegate,UINav
                     if let res = response{
                         print("res: \(res)")
                     }
-                    let dateTime = NSDate()
-                    let timeInterval = dateTime.timeIntervalSince1970 * 1000
-                    print(timeInterval)
-                    let headImageURL = "\(avatarURLHeader)userAvatar/\(self.identifierValue).jpeg?v=\(timeInterval)"
-                    userDefault.setObject(headImageURL, forKey: "portrait")
                     
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-                        let imageURL = NSURL(string: headImageURL)
-                        let imageData = NSData(contentsOfURL: imageURL!)
-                        dispatch_async(dispatch_get_main_queue(), {
-                            
-                            
-                            
-                            let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.3)
-                            
-                            self.imageButton.setImage(UIImage(data: smallImage!), forState: .Normal)
-                            
-                            
-                            print("3")
-                        })
+                    do{
+                        
+                        var response:NSURLResponse?
+                        let urlString:String = "\(ip)/app.changeavatar.success"
+                        var url:NSURL!
+                        url = NSURL(string:urlString)
+                        let request = NSMutableURLRequest(URL:url)
+                        let body = "account=\(self.identifierValue)"
+                        //编码POST数据
+                        let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+                        //保用 POST 提交
+                        request.HTTPMethod = "POST"
+                        request.HTTPBody = postData
                         
                         
+                        let data:NSData = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
+                        let dict:AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                        let dic = dict as! NSDictionary
+                        print(dic)
+                        let status = dic.objectForKey("status") as! String
+                        print(status)
+                        switch status{
+                        case "720":
+                            let dateTime = NSDate()
+                            let timeInterval = dateTime.timeIntervalSince1970
+                            print(Int(timeInterval))
+                            let headImageURL = "\(avatarURLHeader)userAvatar/\(self.identifierValue).jpeg?v=\(Int(timeInterval))"
+                            print(headImageURL)
+                            
+                            userDefault.setObject(headImageURL, forKey: "portrait")
+                            
+                            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                                let imageURL = NSURL(string: headImageURL)
+                                let imageData = NSData(contentsOfURL: imageURL!)
+                                dispatch_async(dispatch_get_main_queue(), {
+                                    
+                                    
+                                    
+                                    let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.3)
+                                    
+                                    self.imageButton.setImage(UIImage(data: smallImage!), forState: .Normal)
+                                    
+                                    self.changeImg = false
+                                    print("更改照片")
+                                })
+                                
+                                
+                                
+                                
+                            }
+                            
+                        case "730":
+                            print("更改照片失败")
+                        default:
+                            return
+                        }
                         
-                        
+                    }catch{
+                        print(error)
+                    
                     }
+                    
+                    
+                    
                     
                     }, option: nil)
                 

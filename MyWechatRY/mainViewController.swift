@@ -10,6 +10,8 @@ import UIKit
 
 import XMSegmentedControl
 class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollViewDelegate,UITableViewDelegate,UITableViewDataSource{
+    let identifierValue = String(userDefault.objectForKey("identifier")!)
+    
     var scrollView:UIScrollView!
     var segmentedControl3:XMSegmentedControl!
     var dynamicOnline = Array<DynamicModel>()
@@ -31,12 +33,56 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
     var tableView4:UITableView!
     
     override func viewWillAppear(animated: Bool) {
+        
         self.tabBarController?.tabBar.hidden = false
+        
+        ////////////////////////////
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            self.postTimeLine()
+            
+            for i in self.dynamicOnline{
+                
+                
+                
+                let maxLabelSize: CGSize = CGSizeMake(self.view.frame.width - 54, CGFloat(9999))
+                let contentNSString = i.dynamic as NSString
+                let expectedLabelSize = contentNSString.boundingRectWithSize(maxLabelSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16.0)], context: nil)
+                self.onlineheight.append(expectedLabelSize.size.height+140)
+            }
+            for i in self.dynamicParty{
+                
+                let maxLabelSize: CGSize = CGSizeMake(self.view.frame.width - 54, CGFloat(9999))
+                let contentNSString = i.dynamic as NSString
+                let expectedLabelSize = contentNSString.boundingRectWithSize(maxLabelSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16.0)], context: nil)
+                self.partyheight.append(expectedLabelSize.size.height+140)
+            }
+            for i in self.dynamicCar{
+                
+                let maxLabelSize: CGSize = CGSizeMake(self.view.frame.width - 54, CGFloat(9999))
+                let contentNSString = i.dynamic as NSString
+                let expectedLabelSize = contentNSString.boundingRectWithSize(maxLabelSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16.0)], context: nil)
+                self.carheight.append(expectedLabelSize.size.height+140)
+            }
+            for i in self.dynamicTravel{
+                let maxLabelSize: CGSize = CGSizeMake(self.view.frame.width - 54, CGFloat(9999))
+                let contentNSString = i.dynamic as NSString
+                let expectedLabelSize = contentNSString.boundingRectWithSize(maxLabelSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16.0)], context: nil)
+                self.travelheight.append(expectedLabelSize.size.height+140)
+                
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.tableView1.reloadData()
+            })
+        }
+        
+        
+        ////////////
+
     }
     
     override func viewDidLoad() {
-        
-        ///////////
+    
         
         
         let appDeletage = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -55,23 +101,23 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
         /////////
         
         ////////数据模拟
-        let a = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "monzy", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 5,isThumbUp:false, joinNumber:2,isJoin:false, commentsNumber: 4)
-        let b = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "pt", dynamic: "6月20号中午12点嘉定校区到虹桥火车站，求拼车", thumbUpNumber: 0,isThumbUp: false, joinNumber: 0, isJoin: false,commentsNumber: 0)
-        let c = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "lynn", dynamic: "7月1号。。。。。。。。。。。。。。。。。。。。。。。。", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0)
-        dynamicOnline.append(a)
-        dynamicOnline.append(b)
-        dynamicOnline.append(c)
-        let d = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "wang", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0,isThumbUp: false, joinNumber:0,isJoin: false, commentsNumber: 0)
-        let e = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "berry", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0, isThumbUp: false,joinNumber: 6,isJoin: false, commentsNumber: 0)
-        let f = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "berry2", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0)
-        
-        
-        dynamicTravel.append(d)
-        dynamicTravel.append(e)
-        dynamicTravel.append(f)
-        
-        dynamicCar.append(a)
-        dynamicParty.append(b)
+//        let a = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "monzy", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 5,isThumbUp:false, joinNumber:2,isJoin:false, commentsNumber: 4)
+//        let b = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "pt", dynamic: "6月20号中午12点嘉定校区到虹桥火车站，求拼车", thumbUpNumber: 0,isThumbUp: false, joinNumber: 0, isJoin: false,commentsNumber: 0)
+//        let c = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "lynn", dynamic: "7月1号。。。。。。。。。。。。。。。。。。。。。。。。", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0)
+//        dynamicOnline.append(a)
+//        dynamicOnline.append(b)
+//        dynamicOnline.append(c)
+//        let d = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "wang", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0,isThumbUp: false, joinNumber:0,isJoin: false, commentsNumber: 0)
+//        let e = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "berry", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0, isThumbUp: false,joinNumber: 6,isJoin: false, commentsNumber: 0)
+//        let f = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "berry2", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0)
+//        
+//        
+//        dynamicTravel.append(d)
+//        dynamicTravel.append(e)
+//        dynamicTravel.append(f)
+//        
+//        dynamicCar.append(a)
+//        dynamicParty.append(b)
         
         /////////////////////
         
@@ -147,36 +193,14 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
         scrollView.scrollEnabled = false
         self.view.addSubview(scrollView)
         
-        for i in dynamicOnline{
-            
-            
-            
-            let maxLabelSize: CGSize = CGSizeMake(self.view.frame.width - 54, CGFloat(9999))
-            let contentNSString = i.dynamic as NSString
-            let expectedLabelSize = contentNSString.boundingRectWithSize(maxLabelSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16.0)], context: nil)
-            onlineheight.append(expectedLabelSize.size.height+140)
-        }
-        for i in dynamicParty{
         
-            let maxLabelSize: CGSize = CGSizeMake(self.view.frame.width - 54, CGFloat(9999))
-            let contentNSString = i.dynamic as NSString
-            let expectedLabelSize = contentNSString.boundingRectWithSize(maxLabelSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16.0)], context: nil)
-            partyheight.append(expectedLabelSize.size.height+140)
-        }
-        for i in dynamicCar{
         
-            let maxLabelSize: CGSize = CGSizeMake(self.view.frame.width - 54, CGFloat(9999))
-            let contentNSString = i.dynamic as NSString
-            let expectedLabelSize = contentNSString.boundingRectWithSize(maxLabelSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16.0)], context: nil)
-            carheight.append(expectedLabelSize.size.height+140)
-        }
-        for i in dynamicTravel{
-            let maxLabelSize: CGSize = CGSizeMake(self.view.frame.width - 54, CGFloat(9999))
-            let contentNSString = i.dynamic as NSString
-            let expectedLabelSize = contentNSString.boundingRectWithSize(maxLabelSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16.0)], context: nil)
-            travelheight.append(expectedLabelSize.size.height+140)
         
-        }
+        
+        
+        
+        
+        
         
     }
     
@@ -222,12 +246,40 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             ce.userName.tag = indexPath.row
 
 //            ce.userPortrait.image = UIImage(data: NSData(contentsOfURL: NSURL(string: dynamicOnline[indexPath.row].userPortraitUrl)!)!)
-            ce.userPortrait.image = UIImage(named:"xixi.jpg")
+            //ce.userPortrait.image = UIImage(named:"xixi.jpg")
+            if dynamicOnline[indexPath.row].userPortraitUrl != portrait{
+                if userDefault.objectForKey("\(dynamicOnline[indexPath.row].userName)Head") as? NSData != nil{
+                
+                    ce.userPortrait.image = UIImage(data: userDefault.objectForKey("\(dynamicOnline[indexPath.row].userName)Head") as! NSData)
+                
+                }else{
+                
+                    let dateTime = NSDate()
+                    let timeInterval = dateTime.timeIntervalSince1970
+                    print(Int(timeInterval))
+                    let headImageURL = "\(avatarURLHeader)\(dynamicOnline[indexPath.row].userPortraitUrl)?v=\(Int(timeInterval))"
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                        let imageURL = NSURL(string: headImageURL)
+                        let imageData = NSData(contentsOfURL: imageURL!)
+                        let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.1)
+                        userDefault.setObject(smallImage, forKey: "\(self.dynamicOnline[indexPath.row].userName)Head")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            ce.userPortrait.image = UIImage(data: smallImage!)
+                        })
+                        
+                    }
+                }
+            }else{
+                ce.userPortrait.image = UIImage(named:"xixi.jpg")
+            }
+            
             ce.userName.setTitle(dynamicOnline[indexPath.row].userName, forState: .Normal)
             ce.dynamicContent.text = dynamicOnline[indexPath.row].dynamic
             ce.dynamicContent.sizeThatFits(CGSizeMake(self.view.frame.width - 54, 9999))
             ce.dynamicContent.font = UIFont.systemFontOfSize(16.0)
             ce.dynamicContent.numberOfLines = 0
+            ce.timeShow.text = dynamicOnline[indexPath.row].timeShow
             
         //处理点赞参与评论颜色
             if dynamicOnline[indexPath.row].isThumbUp == true{
@@ -280,6 +332,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             ce.dynamicContent.sizeThatFits(CGSizeMake(self.view.frame.width - 54, 9999))
             ce.dynamicContent.font = UIFont.systemFontOfSize(16.0)
             ce.dynamicContent.numberOfLines = 0
+            ce.timeShow.text = dynamicParty[indexPath.row].timeShow
             
             //处理点赞参与评论颜色
             if dynamicParty[indexPath.row].isThumbUp == true{
@@ -330,6 +383,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             ce.dynamicContent.sizeThatFits(CGSizeMake(self.view.frame.width - 54, 9999))
             ce.dynamicContent.font = UIFont.systemFontOfSize(16.0)
             ce.dynamicContent.numberOfLines = 0
+            ce.timeShow.text = dynamicTravel[indexPath.row].timeShow
             
             
             //处理点赞参与评论颜色
@@ -384,6 +438,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             ce.dynamicContent.sizeThatFits(CGSizeMake(self.view.frame.width - 54, 9999))
             ce.dynamicContent.font = UIFont.systemFontOfSize(16.0)
             ce.dynamicContent.numberOfLines = 0
+            ce.timeShow.text = dynamicCar[indexPath.row].timeShow
             
             //处理点赞参与评论颜色
             if dynamicCar[indexPath.row].isThumbUp == true{
@@ -505,10 +560,20 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             if dynamicOnline[btn.tag].isThumbUp == false{
                 dynamicOnline[btn.tag].isThumbUp = true
                 dynamicOnline[btn.tag].thumbUpNumber = dynamicOnline[btn.tag].thumbUpNumber + 1
+                
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    self.thumbUpHttp("like", timelineID: self.dynamicOnline[btn.tag].dynamicId)
+                })
+                
+                
+                
             }else{
                 
                 dynamicOnline[btn.tag].isThumbUp = false
                 dynamicOnline[btn.tag].thumbUpNumber = dynamicOnline[btn.tag].thumbUpNumber - 1
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    self.thumbUpHttp("unlike", timelineID: self.dynamicOnline[btn.tag].dynamicId)
+                })
             }
             
             let ce = tableView1.cellForRowAtIndexPath(NSIndexPath(forRow: btn.tag, inSection: 0)) as!DynamicCell
@@ -534,10 +599,16 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             if dynamicParty[number].isThumbUp == false{
                 dynamicParty[number].isThumbUp = true
                 dynamicParty[number].thumbUpNumber = dynamicParty[number].thumbUpNumber + 1
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    self.thumbUpHttp("like", timelineID: self.dynamicParty[btn.tag].dynamicId)
+                })
             }else{
                 
                 dynamicParty[number].isThumbUp = false
                 dynamicParty[number].thumbUpNumber = dynamicParty[number].thumbUpNumber - 1
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    self.thumbUpHttp("unlike", timelineID: self.dynamicParty[btn.tag].dynamicId)
+                })
             }
             
             let ce = tableView2.cellForRowAtIndexPath(NSIndexPath(forRow: number, inSection: 0)) as!DynamicCell
@@ -562,10 +633,16 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             if dynamicTravel[number].isThumbUp == false{
                 dynamicTravel[number].isThumbUp = true
                 dynamicTravel[number].thumbUpNumber = dynamicTravel[number].thumbUpNumber + 1
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    self.thumbUpHttp("like", timelineID: self.dynamicTravel[btn.tag].dynamicId)
+                })
             }else{
                 
                 dynamicTravel[number].isThumbUp = false
                 dynamicTravel[number].thumbUpNumber = dynamicTravel[number].thumbUpNumber - 1
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    self.thumbUpHttp("unlike", timelineID: self.dynamicTravel[btn.tag].dynamicId)
+                })
             }
             
             let ce = tableView3.cellForRowAtIndexPath(NSIndexPath(forRow: number, inSection: 0)) as!DynamicCell
@@ -589,10 +666,16 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             if dynamicCar[number].isThumbUp == false{
                 dynamicCar[number].isThumbUp = true
                 dynamicCar[number].thumbUpNumber = dynamicCar[number].thumbUpNumber + 1
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    self.thumbUpHttp("like", timelineID: self.dynamicCar[btn.tag].dynamicId)
+                })
             }else{
                 
                 dynamicCar[number].isThumbUp = false
                 dynamicCar[number].thumbUpNumber = dynamicCar[number].thumbUpNumber - 1
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                    self.thumbUpHttp("unlike", timelineID: self.dynamicCar[btn.tag].dynamicId)
+                })
             }
             
             let ce = tableView4.cellForRowAtIndexPath(NSIndexPath(forRow: number, inSection: 0)) as!DynamicCell
@@ -795,5 +878,250 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
         }
     }
    
+    
+    
+//    func getTimeline(account:String){
+//        let urlString:String = "\(ip)/app.timeline.get?account=\(account)"
+//        let url: NSURL = NSURL(string: urlString)!
+//        let request1: NSURLRequest = NSURLRequest(URL: url)
+//        let response: AutoreleasingUnsafeMutablePointer<NSURLResponse?>=nil
+//        
+//        
+//        do{
+//            
+//            let dataVal = try NSURLConnection.sendSynchronousRequest(request1, returningResponse: response)
+//            
+//            print(response)
+//            do {
+//                if let jsonResult = try NSJSONSerialization.JSONObjectWithData(dataVal, options: []) as? NSDictionary {
+//                    print("Synchronous\(jsonResult)")
+//                    
+//                    
+//                    let status = jsonResult.objectForKey("status") as! String
+//                    switch status {
+//                    case "620":
+//                        let timelines = jsonResult.objectForKey("timelines") as! [NSDictionary]
+//                        for i in timelines{
+//                            
+//                            let userInfo = i.objectForKey("userInfo") as! NSDictionary
+//                            let isDefaultAvatar = userInfo.objectForKey("isDefaultAvatar") as! Bool
+//                            let userPortraitUrl:String!
+//                            if isDefaultAvatar == false{
+//                                userPortraitUrl = userInfo.objectForKey("avatarURL") as! String
+//                            }else{
+//                                userPortraitUrl = portrait
+//                            }
+//                            let userName = userInfo.objectForKey("_id") as! String
+//                            let dynamic = i.objectForKey("text") as! String
+//                            let timeStamp = i.objectForKey("timeStamp") as! String
+//                            let timeShow = timeStampToString(timeStamp)
+//                            let likedUser = i.objectForKey("liked") as! [NSDictionary]
+//                            let thumbUpNumber = likedUser.count
+//                            var isThumbUp = false
+//                            var thumbUpUsers = Array<Friends>()
+//                            for j in likedUser{
+//                                let id = j.objectForKey("_id") as! String
+//                                if id == identifierValue{
+//                                    isThumbUp = true
+//                                }
+//                                let isDefaultAvatar = j.objectForKey("isDefaultAvatar") as! Bool
+//                                let userPortraitUrl:String!
+//                                if isDefaultAvatar == false{
+//                                    userPortraitUrl = j.objectForKey("avatarURL") as! String
+//                                }else{
+//                                    userPortraitUrl = portrait
+//                                }
+//                                let thumbUpUser = Friends(id: id, name: id, portrait: userPortraitUrl)
+//                                thumbUpUsers.append(thumbUpUser)
+//                            }
+//                            let commentsNumber = i.objectForKey("commentCount") as! Int
+//                            
+//                            let dynamicModel = DynamicModel(userPortraitUrl: userPortraitUrl, userName: userName, dynamic: dynamic, thumbUpNumber: thumbUpNumber, isThumbUp: isThumbUp, joinNumber: 0, isJoin: false, commentsNumber: commentsNumber, thumbUpUser: thumbUpUsers,timeShow: timeShow)
+//                        
+//                            dynamicOnline.append(dynamicModel)
+//                        }
+//                    case "630":
+//                        print("评论加载失败")
+//                    default:
+//                        return
+//                    }
+//                    
+//                    
+//                    
+//                    
+//                    
+//                    
+//                    
+//                }
+//            } catch let error as NSError {
+//                print(error.localizedDescription)
+//            }
+//            
+//            
+//            
+//        }catch let error as NSError
+//        {
+//            print(error.localizedDescription)
+//        }
+//    
+//    }
+//    
+    
+    
+    func postTimeLine(){
+        
+        
+        let urlString:String = "\(ip)/app.timeline.getByFollowing?account=\(identifierValue)"
+        let url: NSURL = NSURL(string: urlString)!
+        let request1: NSURLRequest = NSURLRequest(URL: url)
+        let response: AutoreleasingUnsafeMutablePointer<NSURLResponse?>=nil
+        
+        
+        do{
+            
+            let dataVal = try NSURLConnection.sendSynchronousRequest(request1, returningResponse: response)
+            
+            print(response)
+            do {
+                if let jsonResult = try NSJSONSerialization.JSONObjectWithData(dataVal, options: []) as? NSDictionary {
+                    print("Synchronous\(jsonResult)")
+                    
+                    
+                    let status = jsonResult.objectForKey("status") as! String
+                    switch status {
+                    case "620":
+                        dynamicOnline.removeAll()
+                        dynamicParty.removeAll()
+                        dynamicCar.removeAll()
+                        dynamicTravel.removeAll()
+                        let timelines = jsonResult.objectForKey("timelines") as! [NSDictionary]
+                        for i in timelines{
+                            
+                            let userInfo = i.objectForKey("userInfo") as! NSDictionary
+                            let isDefaultAvatar = userInfo.objectForKey("isDefaultAvatar") as! Bool
+                            let userPortraitUrl:String!
+                            if isDefaultAvatar == false{
+                                userPortraitUrl = userInfo.objectForKey("avatarURL") as! String
+                            }else{
+                                userPortraitUrl = portrait
+                            }
+                            let userName = userInfo.objectForKey("_id") as! String
+                            let dynamic = i.objectForKey("text") as! String
+                            let dynamicId = i.objectForKey("_id") as! Int
+                            let timeStamp = i.objectForKey("timeStamp") as! String
+                            let timeShow = timeStampToString(timeStamp)
+                            print(timeShow)
+                            let likedUser = i.objectForKey("liked") as! [NSDictionary]
+                            let thumbUpNumber = likedUser.count
+                            var isThumbUp = false
+                            var thumbUpUsers = Array<Friends>()
+                            for j in likedUser{
+                                let id = j.objectForKey("_id") as! String
+                                if id == identifierValue{
+                                    isThumbUp = true
+                                }
+                                let isDefaultAvatar = j.objectForKey("isDefaultAvatar") as! Bool
+                                let userPortraitUrl:String!
+                                if isDefaultAvatar == false{
+                                    userPortraitUrl = j.objectForKey("avatarURL") as! String
+                                }else{
+                                    userPortraitUrl = portrait
+                                }
+                                let thumbUpUser = Friends(id: id, name: id, portrait: userPortraitUrl)
+                                thumbUpUsers.append(thumbUpUser)
+                            }
+                            let commentsNumber = i.objectForKey("commentCount") as! Int
+                            
+                            let dynamicModel = DynamicModel(userPortraitUrl: userPortraitUrl, userName: userName, dynamic: dynamic, thumbUpNumber: thumbUpNumber, isThumbUp: isThumbUp, joinNumber: 0, isJoin: false, commentsNumber: commentsNumber, thumbUpUser: thumbUpUsers,timeShow: timeShow,dynamicId: dynamicId)
+                            
+                            dynamicOnline.append(dynamicModel)
+                        }
+
+                    case "630":
+                        print("评论加载失败")
+                    default:
+                        return
+                    }
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                }
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            
+            
+            
+        }catch let error as NSError
+        {
+            print(error.localizedDescription)
+        }
+
+        
+        
+        
+    }
+    
+    func thumbUpHttp(islike:String,timelineID:Int){
+        
+        do{
+            
+            var response:NSURLResponse?
+            let urlString:String = "\(ip)/app.timeline.\(islike)"
+            var url:NSURL!
+            url = NSURL(string:urlString)
+            let request = NSMutableURLRequest(URL:url)
+            let body = "account=\(identifierValue)&timelineID=\(timelineID)"
+            //编码POST数据
+            let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+            //保用 POST 提交
+            request.HTTPMethod = "POST"
+            request.HTTPBody = postData
+            
+            
+            let data:NSData = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
+            let dict:AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            let dic = dict as! NSDictionary
+            print(dic)
+            let status = dic.objectForKey("status") as! String
+            switch status {
+            case "640":
+                print("点赞成功")
+            case "650":
+                print("点赞失败")
+            case "660":
+                print("取消点赞成功")
+            case "670":
+                print("取消点赞失败")
+            default:
+                return
+            }
+            
+        }catch{
+            print("error")
+            
+        }
+        
+        
+    
+    }
+    
+    func timeStampToString(timeStamp:String)->String {
+        
+        let string = NSString(string: timeStamp)
+        
+        let timeSta:NSTimeInterval = string.doubleValue
+        let dfmatter = NSDateFormatter()
+        dfmatter.dateFormat="yy/MM/dd"
+        
+        let date = NSDate(timeIntervalSince1970: timeSta)
+        
+        print(dfmatter.stringFromDate(date))
+        return dfmatter.stringFromDate(date)
+    }
 
 }

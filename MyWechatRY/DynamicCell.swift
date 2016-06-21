@@ -19,5 +19,6 @@ class DynamicCell:UITableViewCell {
     @IBOutlet weak var joinNumber:UILabel!
     @IBOutlet weak var comments:UIButton!
     @IBOutlet weak var commentsNumber:UILabel!
+    @IBOutlet weak var timeShow: UILabel!
 
 }

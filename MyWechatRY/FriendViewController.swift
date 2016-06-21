@@ -127,9 +127,18 @@ class FriendViewController: UIViewController,UITableViewDelegate,UITableViewData
             //            cell.photoImage.image = userPortrait
             
             
-    
+            if userDefault.objectForKey("\(userPortraitFlag[indexPath.row].id)Head") as? NSData != nil{
+                ce.photoImage.image = UIImage(data: userDefault.objectForKey("\(userPortraitFlag[indexPath.row].id)Head") as! NSData)
+                
+            }else{
+            
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    let imageURL = NSURL(string: userPortraitFlag[indexPath.row].portrait)
+                    
+                    let dateTime = NSDate()
+                    let timeInterval = dateTime.timeIntervalSince1970
+                    let url = String("\(userPortraitFlag[indexPath.row].portrait)?v=\(Int(timeInterval))")
+                    
+                    let imageURL = NSURL(string: url)
                     let imageData = NSData(contentsOfURL: imageURL!)
                     if imageData == nil{
                         dispatch_async(dispatch_get_main_queue(), {
@@ -138,16 +147,19 @@ class FriendViewController: UIViewController,UITableViewDelegate,UITableViewData
                         
                     }else{
                         let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.1)
+                        userDefault.setObject(smallImage, forKey: "\(userPortraitFlag[indexPath.row].id)Head")
                         dispatch_async(dispatch_get_main_queue(), {
                             ce.photoImage.image = UIImage(data: smallImage!)
                         })
                     }
+                    
+                    
+                    print("here2")
+                })
+
                 
-                
-                print("here2")
-            })
             
-            
+            }
             
             
         }

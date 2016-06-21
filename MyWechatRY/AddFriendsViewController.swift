@@ -237,13 +237,17 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
                 let findNameArray = dic.objectForKey("users") as! NSArray
                 print(findNameArray)
                 for i in findNameArray{
+                    let dateTime = NSDate()
+                    let timeInterval = dateTime.timeIntervalSince1970
+                    print(Int(timeInterval))
+                    
                     let name = i.objectForKey("_id") as! String
                     print(name)
                     
                     let isDefaultAvatar = i.objectForKey("isDefaultAvatar") as! Bool
                     if isDefaultAvatar == false{
                         var avatarURL = i.objectForKey("avatarURL") as! String
-                        avatarURL = "\(avatarURLHeader)\(avatarURL)"
+                        avatarURL = "\(avatarURLHeader)\(avatarURL)?v=\(Int(timeInterval))"
                         let friend = Friends(id: name, name: name, portrait: avatarURL)
                         addFriends.append(friend)
                     

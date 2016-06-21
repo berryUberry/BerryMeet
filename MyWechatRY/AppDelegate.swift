@@ -10,7 +10,7 @@ import UIKit
 
 //var identifier:String?
 //var token:String?
-let portrait:String = "http://b.hiphotos.baidu.com/image/h%3D200/sign=0afb9ebc4c36acaf46e091fc4cd88d03/bd3eb13533fa828b670a4066fa1f4134970a5a0e.jpg"
+let portrait:String = "http://www.189mm.com/ui/img/person-200-200.jpg"
 let avatarURLHeader = "http://o7b20it1b.bkt.clouddn.com/"
 let ip:String = "http://42.96.155.17:3000/mobile"
 var userDefault = NSUserDefaults.standardUserDefaults()
@@ -35,9 +35,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate,RCIMUserInfoDataSource,RCI
         
         let userInfo = RCUserInfo()
         userInfo.userId = userId
-        userInfo.portraitUri = portrait
+        //userInfo.portraitUri = portrait
         userInfo.name = userId
         print(userId)
+        for i in friendsList{
+            if userId == i.id{
+                let dateTime = NSDate()
+                let timeInterval = dateTime.timeIntervalSince1970
+                userInfo.portraitUri = String("\(i.portrait)?v=\(timeInterval)")
+                print(userInfo.portraitUri)
+            }
+        
+        }
 //        switch userId {
 //        case "lynn":
 //            userInfo.name = "lynn"
@@ -93,12 +102,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate,RCIMUserInfoDataSource,RCI
 
     
     func onRCIMReceiveMessage(message: RCMessage!, left: Int32) {
-        print("shit")
+        
     }
 
     func onRCIMCustomLocalNotification(message: RCMessage!, withSenderName senderName: String!) -> Bool {
         
-        print("shabi")
+        
         notification.timeZone = NSTimeZone.localTimeZone()
         notification.alertTitle = "BerryChat"
         notification.repeatInterval = NSCalendarUnit.Day
@@ -137,6 +146,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate,RCIMUserInfoDataSource,RCI
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        if userDefault.objectForKey("portraitData") == nil{
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                let imageURL = NSURL(string: portrait)
+                let imageData = NSData(contentsOfURL: imageURL!)
+                let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.3)
+                userDefault.setObject(smallImage, forKey: "portraitData")
+            }
+        
+        }
+        
         
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UITabBar.appearance().tintColor = UIColor(red: 85/255, green: 149/255, blue: 122/255, alpha: 1)

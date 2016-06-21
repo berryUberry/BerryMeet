@@ -276,13 +276,13 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hW-SD-sny">
-                                                            <rect key="frame" x="59" y="7" width="200" height="29"/>
+                                                            <rect key="frame" x="59" y="7" width="300" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9W-dW-w6Z">
-                                                            <rect key="frame" x="399" y="7" width="60" height="29"/>
+                                                            <rect key="frame" x="524" y="7" width="60" height="29"/>
                                                             <color key="backgroundColor" red="0.26506683650000001" green="0.5568627451" blue="0.50686411919999996" alpha="1" colorSpace="calibratedRGB"/>
                                                             <state key="normal" title="add">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -291,12 +291,12 @@
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="W9W-dW-w6Z" firstAttribute="centerY" secondItem="8aG-Bd-8U7" secondAttribute="centerY" id="58Z-cA-ppj"/>
-                                                        <constraint firstItem="W9W-dW-w6Z" firstAttribute="leading" secondItem="2hW-SD-sny" secondAttribute="trailing" constant="140" id="5ju-x2-f09"/>
                                                         <constraint firstItem="2hW-SD-sny" firstAttribute="leading" secondItem="hhz-aM-clO" secondAttribute="trailing" constant="8" id="E52-lf-1kt"/>
                                                         <constraint firstItem="hhz-aM-clO" firstAttribute="leading" secondItem="8aG-Bd-8U7" secondAttribute="leadingMargin" constant="8" id="IBJ-YO-JDM"/>
                                                         <constraint firstItem="W9W-dW-w6Z" firstAttribute="width" secondItem="8aG-Bd-8U7" secondAttribute="width" multiplier="1:10" id="JWR-e5-PUN"/>
-                                                        <constraint firstItem="2hW-SD-sny" firstAttribute="width" secondItem="8aG-Bd-8U7" secondAttribute="width" multiplier="1:3" id="ZfC-U3-OCL"/>
+                                                        <constraint firstItem="2hW-SD-sny" firstAttribute="width" secondItem="8aG-Bd-8U7" secondAttribute="width" multiplier="1:2" id="ZfC-U3-OCL"/>
                                                         <constraint firstItem="W9W-dW-w6Z" firstAttribute="height" secondItem="8aG-Bd-8U7" secondAttribute="height" multiplier="2:3" id="n37-I4-O0Q"/>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="W9W-dW-w6Z" secondAttribute="trailing" constant="8" id="nYf-q1-Zif"/>
                                                         <constraint firstItem="W9W-dW-w6Z" firstAttribute="leading" secondItem="2hW-SD-sny" secondAttribute="trailing" constant="8" id="o7g-Hu-w0Z"/>
                                                         <constraint firstItem="2hW-SD-sny" firstAttribute="centerY" secondItem="8aG-Bd-8U7" secondAttribute="centerY" id="qSA-nm-cjD"/>
                                                         <constraint firstItem="hhz-aM-clO" firstAttribute="centerY" secondItem="8aG-Bd-8U7" secondAttribute="centerY" id="qnp-hR-O5P"/>
@@ -825,6 +825,7 @@
                         <outlet property="chatButton" destination="E3B-dR-9vf" id="6Il-GO-n6V"/>
                         <outlet property="nameLabel" destination="VFl-lD-s78" id="1na-80-mXd"/>
                         <outlet property="tableView" destination="YXW-rL-ycn" id="b1K-3k-3Vb"/>
+                        <outlet property="userHead" destination="zc3-hP-2cy" id="WN4-gh-y3T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VtO-gz-xgw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1057,6 +1058,6 @@
         <image name="image_32x32" width="32" height="32"/>
         <image name="iphone_24x32" width="24" height="32"/>
         <image name="user_24x32" width="24" height="32"/>
-        <image name="xixi" width="1024" height="1024"/>
+        <image name="xixi" width="200" height="200"/>
     </resources>
 </document>
