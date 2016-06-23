@@ -12,6 +12,9 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
 //////////////////////数据模拟
     
     var personalDynamic = Array<DynamicModel>()
+    var dynamicForComment:DynamicModel!
+    var thumbUpUsers = Array<Array<Friends>>()
+    var thumbUpUserForComment = Array<Friends>()
 //    let a = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "Berry", dynamic: "sdfdsddhsdhdhdhdhdshkadhfjksdahfasdhjkfhasdfhsdajkfhaskjdfhaskdfhkasdflhasdkfkhasdjkfhsjadkfhjdsafhajsdkfhjaskdfhjkasdfhjasdhfeuiywuieyrfiuqweyriqweryqwejiwjefjkfhjsdgfasgdfhfjashfdhsadfhkfiuqwyeruiyerweqyiryqweuryeuwqirhjsdhfashfjkasdhfiuwyruiehfjsahfksadfjkashfyweuryhuewfhsjadfkjhdakfhsdjfhaskdfhsajdkfhakdsjfhklasdfhkjaslfdhjakdfhjkasdfhjsdkfhjkasdhfkjasdfasdhfjksdhfjsdhfjskahdfkjahsdlfjashdfahsdfjkhadfjkladhfadhfjksdhfkjsadhfjaksdfhdfiuwhefiuqhweufhuqwefhweuifheuwihfuwehfweufhuwehfuqwehfuwhqefdsjkfhaklsfjdsafhlkadjhfkhsdfhkjskdfhksdhfjskhdfkjshdfjksdhfjkasdjfhsakjdfhjksadhfjkashdfjkashfjsd", thumbUpNumber: 0,isThumbUp:false, joinNumber:0,isJoin:false, commentsNumber: 99,thumbUpUser: [])
 //    let b = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "Berry", dynamic: "sdlkfjkalsjdflajksdkfjaskldf", thumbUpNumber: 0,isThumbUp: false, joinNumber: 0, isJoin: false,commentsNumber: 0,thumbUpUser: [])
 //    let c = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "Berry", dynamic: "asdf", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0,thumbUpUser: [])
@@ -181,7 +184,9 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         
         let ce = cell as! DynamicCell
         
-        
+        //点赞
+        ce.thumbUp.tag = indexPath.row
+        ce.thumbUp.addTarget(self, action: #selector(PersonalViewController.doThumbUp), forControlEvents: .TouchUpInside)
         
         
         if userDefault.objectForKey("\(personalDynamic[indexPath.row].userName)Head") as? NSData != nil{
@@ -243,6 +248,11 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        dynamicForComment = personalDynamic[indexPath.row]
+        thumbUpUserForComment = thumbUpUsers[indexPath.row]
+        print(thumbUpUserForComment)
+        self.performSegueWithIdentifier("personalToComment", sender: self)
+        
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -353,9 +363,21 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
                     let status = jsonResult.objectForKey("status") as! String
                     switch status {
                     case "620":
+                        print("动态加载成功")
+                        
+                        DyHeight.removeAll()
+                        personalDynamic.removeAll()
+                        thumbUpUsers.removeAll()
+                        
                         let timelines = jsonResult.objectForKey("timelines") as! [NSDictionary]
+                        var number = 0
+//                        for i in 0...timelines.count-1{
+//                            let a = Friends(id: "", name: "", portrait: "")
+//                            
+//                            thumbUpUsers.append([a])
+//                        }
                         for i in timelines{
-                            
+                            thumbUpUsers.append([])
                             let userInfo = i.objectForKey("userInfo") as! NSDictionary
                             let isDefaultAvatar = userInfo.objectForKey("isDefaultAvatar") as! Bool
                             let userPortraitUrl:String!
@@ -371,8 +393,10 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
                             let timeShow = timeStampToString(timeStamp)
                             let likedUser = i.objectForKey("liked") as! [NSDictionary]
                             let thumbUpNumber = likedUser.count
+                            print("\(thumbUpNumber)jjjjjjjjj")
+                            print("\(number)kkkkk")
                             var isThumbUp = false
-                            var thumbUpUsers = Array<Friends>()
+                            
                             for j in likedUser{
                                 let id = j.objectForKey("_id") as! String
                                 if id == identifierValue{
@@ -386,16 +410,19 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
                                     userPortraitUrl = portrait
                                 }
                                 let thumbUpUser = Friends(id: id, name: id, portrait: userPortraitUrl)
-                                thumbUpUsers.append(thumbUpUser)
+                                
+                                thumbUpUsers[number].append(thumbUpUser)
                             }
                             let commentsNumber = i.objectForKey("commentCount") as! Int
                             
-                            let dynamicModel = DynamicModel(userPortraitUrl: userPortraitUrl, userName: userName, dynamic: dynamic, thumbUpNumber: thumbUpNumber, isThumbUp: isThumbUp, joinNumber: 0, isJoin: false, commentsNumber: commentsNumber, thumbUpUser: thumbUpUsers,timeShow: timeShow,dynamicId: dynamicId)
+                            let dynamicModel = DynamicModel(userPortraitUrl: userPortraitUrl, userName: userName, dynamic: dynamic, thumbUpNumber: thumbUpNumber, isThumbUp: isThumbUp, joinNumber: 0, isJoin: false, commentsNumber: commentsNumber, thumbUpUser: thumbUpUsers[number],timeShow: timeShow,dynamicId: dynamicId)
                             
                             personalDynamic.append(dynamicModel)
+                            
+                            number += 1
                         }
                     case "630":
-                        print("评论加载失败")
+                        print("动态加载失败")
                     default:
                         return
                     }
@@ -433,6 +460,109 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         
         print(dfmatter.stringFromDate(date))
         return dfmatter.stringFromDate(date)
+    }
+    
+    
+    func doThumbUp(btn:UIButton){
+
+        if personalDynamic[btn.tag].isThumbUp == true{
+            personalDynamic[btn.tag].isThumbUp = false
+            personalDynamic[btn.tag].thumbUpNumber = personalDynamic[btn.tag].thumbUpNumber - 1
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                self.thumbUpHttp("unlike", timelineID: self.personalDynamic[btn.tag].dynamicId,tag: btn.tag)
+            })
+        }else{
+            personalDynamic[btn.tag].isThumbUp = true
+            personalDynamic[btn.tag].thumbUpNumber = personalDynamic[btn.tag].thumbUpNumber + 1
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+                self.thumbUpHttp("like", timelineID: self.personalDynamic[btn.tag].dynamicId,tag: btn.tag)
+            })
+        }
+        
+        let ce = tableView.cellForRowAtIndexPath(NSIndexPath(forRow: btn.tag, inSection: 0)) as!DynamicCell
+        if personalDynamic[btn.tag].isThumbUp == true{
+            ce.thumbUp.setImage(UIImage(named: "heart-red"), forState: .Normal)
+            ce.thumbUpNumber.textColor = UIColor.redColor()
+            
+        }else{
+            ce.thumbUp.setImage(UIImage(named: "heart"), forState: .Normal)
+            ce.thumbUpNumber.textColor = UIColor.blackColor()
+        }
+        
+        if personalDynamic[btn.tag].thumbUpNumber == 0{
+            ce.thumbUpNumber.text = ""
+        }else{
+            
+            ce.thumbUpNumber.text = "\(personalDynamic[btn.tag].thumbUpNumber)"
+        }
+        
+        
+    }
+    
+    func thumbUpHttp(islike:String,timelineID:Int,tag:Int){
+        
+        do{
+            
+            var response:NSURLResponse?
+            let urlString:String = "\(ip)/app.timeline.\(islike)"
+            var url:NSURL!
+            url = NSURL(string:urlString)
+            let request = NSMutableURLRequest(URL:url)
+            let body = "account=\(identifierValue)&timelineID=\(timelineID)"
+            //编码POST数据
+            let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+            //保用 POST 提交
+            request.HTTPMethod = "POST"
+            request.HTTPBody = postData
+            
+            
+            let data:NSData = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
+            let dict:AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            let dic = dict as! NSDictionary
+            print(dic)
+            let status = dic.objectForKey("status") as! String
+            switch status {
+            case "640":
+                print("点赞成功")
+                if userDefault.objectForKey("portrait") as! String != ""{
+                    thumbUpUsers[tag].append(Friends(id: identifierValue, name: identifierValue, portrait: userDefault.objectForKey("portrait") as! String))
+                }else{
+                    thumbUpUsers[tag].append(Friends(id: identifierValue, name: identifierValue, portrait: portrait))
+                }
+            case "650":
+                print("点赞失败")
+            case "660":
+                print("取消点赞成功")
+                
+                for i in 0...thumbUpUsers[tag].count-1{
+                    if thumbUpUsers[tag][i].id == identifierValue{
+                        thumbUpUsers[tag].removeAtIndex(i)
+                    }
+                }
+                
+                
+            case "670":
+                print("取消点赞失败")
+            default:
+                return
+            }
+            
+        }catch{
+            print("error")
+            
+        }
+        
+        
+        
+    }
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "personalToComment"{
+            let VC = segue.destinationViewController as! CommentViewController
+            VC.dynamic = dynamicForComment
+            VC.thumbUpUsers = thumbUpUserForComment
+        }
     }
     
 }

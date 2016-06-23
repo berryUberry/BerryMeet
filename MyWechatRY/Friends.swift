@@ -13,7 +13,7 @@ class Friends:NSObject,NSCoding{
     var id:String!
     var name:String!
     var portrait:String!
-
+    
     init(id:String,name:String,portrait:String){
     
         self.id = id

@@ -30,6 +30,8 @@
 		D523DE4F1CCCECB70052C1F2 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = D523DE4E1CCCECB70052C1F2 /* Podfile */; };
 		D5850C2E1CE403C600953C8D /* AddFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5850C2D1CE403C600953C8D /* AddFriendsViewController.swift */; };
 		D5850C301CE40F7000953C8D /* AddFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5850C2F1CE40F7000953C8D /* AddFriendsCell.swift */; };
+		D5AFBCFD1D1A6416001F2687 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AFBCFC1D1A6416001F2687 /* CommentViewController.swift */; };
+		D5AFBCFF1D1B0E09001F2687 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AFBCFE1D1B0E09001F2687 /* CommentModel.swift */; };
 		F5564A1AFE5337D80DD6D958 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F72FD5E3B1BDD6616BE82E33 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,8 @@
 		D523DE501CCCF26D0052C1F2 /* MyWechatRY-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyWechatRY-Bridging-Header.h"; sourceTree = "<group>"; };
 		D5850C2D1CE403C600953C8D /* AddFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsViewController.swift; sourceTree = "<group>"; };
 		D5850C2F1CE40F7000953C8D /* AddFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsCell.swift; sourceTree = "<group>"; };
+		D5AFBCFC1D1A6416001F2687 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
+		D5AFBCFE1D1B0E09001F2687 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		F72FD5E3B1BDD6616BE82E33 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -95,6 +99,7 @@
 				D51640341CDC682100262C70 /* Friends.swift */,
 				D50EB7EE1CDC89D40099E4FC /* PageControlModel.swift */,
 				D50AA7741CFC59870011CD96 /* DynamicModel.swift */,
+				D5AFBCFE1D1B0E09001F2687 /* CommentModel.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -142,6 +147,7 @@
 				D5850C2D1CE403C600953C8D /* AddFriendsViewController.swift */,
 				D50DE3E61CE1DB55001FE28F /* UserViewController.swift */,
 				D51895F81CFED8D500DDA919 /* PersonalViewController.swift */,
+				D5AFBCFC1D1A6416001F2687 /* CommentViewController.swift */,
 				D516402D1CDC651800262C70 /* Model */,
 				D50AA7411CEEE54D0011CD96 /* Cell */,
 				D523DE3E1CCCEBDA0052C1F2 /* Main.storyboard */,
@@ -309,8 +315,10 @@
 				D523DE3B1CCCEBDA0052C1F2 /* AppDelegate.swift in Sources */,
 				D50DE3E71CE1DB55001FE28F /* UserViewController.swift in Sources */,
 				D50EB7ED1CDC87F30099E4FC /* HelloVIewController.swift in Sources */,
+				D5AFBCFD1D1A6416001F2687 /* CommentViewController.swift in Sources */,
 				D51895F11CFD7C1200DDA919 /* PublishViewController.swift in Sources */,
 				D50FBE631CCDE96E00AD9A2F /* ConversationViewController.swift in Sources */,
+				D5AFBCFF1D1B0E09001F2687 /* CommentModel.swift in Sources */,
 				D51640311CDC655000262C70 /* FriendCell.swift in Sources */,
 				D51640331CDC65C600262C70 /* FriendViewController.swift in Sources */,
 			);
