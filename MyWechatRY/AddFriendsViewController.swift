@@ -216,7 +216,7 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
             let request = NSMutableURLRequest(URL:url)
             let body = "account=\(identifierValue)&searchString=\(searchTextField.text!)"
             //编码POST数据
-            let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+            let postData = body.dataUsingEncoding(NSUTF8StringEncoding)
             //保用 POST 提交
             request.HTTPMethod = "POST"
             request.HTTPBody = postData
@@ -356,7 +356,7 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
             print(identifierValue)
             print(addFriends[flag].id)
             //编码POST数据
-            let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+            let postData = body.dataUsingEncoding(NSUTF8StringEncoding)
             //保用 POST 提交
             request.HTTPMethod = "POST"
             request.HTTPBody = postData

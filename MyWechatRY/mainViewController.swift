@@ -77,6 +77,9 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             
             dispatch_async(dispatch_get_main_queue(), {
                 self.tableView1.reloadData()
+                self.tableView2.reloadData()
+                self.tableView3.reloadData()
+                self.tableView4.reloadData()
             })
         }
         
@@ -242,6 +245,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
         ce.join.addTarget(self, action: #selector(join(_:)), forControlEvents: .TouchUpInside)
         //点击名字
         ce.userName.addTarget(self, action: #selector(chat(_:)), forControlEvents: .TouchUpInside)
+        ce.join.hidden = true
         
         if tableView == tableView1{
             
@@ -251,6 +255,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
 
 //            ce.userPortrait.image = UIImage(data: NSData(contentsOfURL: NSURL(string: dynamicOnline[indexPath.row].userPortraitUrl)!)!)
             //ce.userPortrait.image = UIImage(named:"xixi.jpg")
+            
             if dynamicOnline[indexPath.row].userPortraitUrl != portrait{
                 if userDefault.objectForKey("\(dynamicOnline[indexPath.row].userName)Head") as? NSData != nil{
                 
@@ -329,7 +334,35 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             ce.userName.tag = 1*10000 + indexPath.row
             
 //            ce.userPortrait.image = UIImage(data: NSData(contentsOfURL: NSURL(string: dynamicParty[indexPath.row].userPortraitUrl)!)!)
-            ce.userPortrait.image = UIImage(named:"xixi.jpg")
+            
+            if dynamicParty[indexPath.row].userPortraitUrl != portrait{
+                if userDefault.objectForKey("\(dynamicParty[indexPath.row].userName)Head") as? NSData != nil{
+                    
+                    ce.userPortrait.image = UIImage(data: userDefault.objectForKey("\(dynamicParty[indexPath.row].userName)Head") as! NSData)
+                    
+                }else{
+                    
+                    let dateTime = NSDate()
+                    let timeInterval = dateTime.timeIntervalSince1970
+                    print(Int(timeInterval))
+                    let headImageURL = "\(avatarURLHeader)\(dynamicParty[indexPath.row].userPortraitUrl)?v=\(Int(timeInterval))"
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                        let imageURL = NSURL(string: headImageURL)
+                        let imageData = NSData(contentsOfURL: imageURL!)
+                        let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.1)
+                        userDefault.setObject(smallImage, forKey: "\(self.dynamicParty[indexPath.row].userName)Head")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            ce.userPortrait.image = UIImage(data: smallImage!)
+                        })
+                        
+                    }
+                }
+            }else{
+                ce.userPortrait.image = UIImage(named:"xixi.jpg")
+            }
+
+            
             ce.userName.setTitle(dynamicParty[indexPath.row].userName, forState: .Normal)
             ce.dynamicContent.text = dynamicParty[indexPath.row].dynamic
             
@@ -381,7 +414,34 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             ce.userName.tag = 2*10000 + indexPath.row
             
 //            ce.userPortrait.image = UIImage(data: NSData(contentsOfURL: NSURL(string: dynamicTravel[indexPath.row].userPortraitUrl)!)!)
-            ce.userPortrait.image = UIImage(named:"xixi.jpg")
+            
+            if dynamicTravel[indexPath.row].userPortraitUrl != portrait{
+                if userDefault.objectForKey("\(dynamicTravel[indexPath.row].userName)Head") as? NSData != nil{
+                    
+                    ce.userPortrait.image = UIImage(data: userDefault.objectForKey("\(dynamicTravel[indexPath.row].userName)Head") as! NSData)
+                    
+                }else{
+                    
+                    let dateTime = NSDate()
+                    let timeInterval = dateTime.timeIntervalSince1970
+                    print(Int(timeInterval))
+                    let headImageURL = "\(avatarURLHeader)\(dynamicTravel[indexPath.row].userPortraitUrl)?v=\(Int(timeInterval))"
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                        let imageURL = NSURL(string: headImageURL)
+                        let imageData = NSData(contentsOfURL: imageURL!)
+                        let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.1)
+                        userDefault.setObject(smallImage, forKey: "\(self.dynamicTravel[indexPath.row].userName)Head")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            ce.userPortrait.image = UIImage(data: smallImage!)
+                        })
+                        
+                    }
+                }
+            }else{
+                ce.userPortrait.image = UIImage(named:"xixi.jpg")
+            }
+            
             ce.userName.setTitle(dynamicTravel[indexPath.row].userName, forState: .Normal)
             ce.dynamicContent.text = dynamicTravel[indexPath.row].dynamic
             ce.dynamicContent.sizeThatFits(CGSizeMake(self.view.frame.width - 54, 9999))
@@ -435,7 +495,33 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             ce.userName.tag = 3*10000 + indexPath.row
             
 //            ce.userPortrait.image = UIImage(data: NSData(contentsOfURL: NSURL(string: dynamicCar[indexPath.row].userPortraitUrl)!)!)
-            ce.userPortrait.image = UIImage(named:"xixi.jpg")
+            if dynamicCar[indexPath.row].userPortraitUrl != portrait{
+                if userDefault.objectForKey("\(dynamicCar[indexPath.row].userName)Head") as? NSData != nil{
+                    
+                    ce.userPortrait.image = UIImage(data: userDefault.objectForKey("\(dynamicCar[indexPath.row].userName)Head") as! NSData)
+                    
+                }else{
+                    
+                    let dateTime = NSDate()
+                    let timeInterval = dateTime.timeIntervalSince1970
+                    print(Int(timeInterval))
+                    let headImageURL = "\(avatarURLHeader)\(dynamicCar[indexPath.row].userPortraitUrl)?v=\(Int(timeInterval))"
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+                        let imageURL = NSURL(string: headImageURL)
+                        let imageData = NSData(contentsOfURL: imageURL!)
+                        let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.1)
+                        userDefault.setObject(smallImage, forKey: "\(self.dynamicCar[indexPath.row].userName)Head")
+                        dispatch_async(dispatch_get_main_queue(), {
+                            
+                            ce.userPortrait.image = UIImage(data: smallImage!)
+                        })
+                        
+                    }
+                }
+            }else{
+                ce.userPortrait.image = UIImage(named:"xixi.jpg")
+            }
+            
             ce.userName.setTitle(dynamicCar[indexPath.row].userName, forState: .Normal)
             ce.dynamicContent.text = dynamicCar[indexPath.row].dynamic
            
@@ -537,9 +623,26 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
         
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        dynamicForComment = dynamicOnline[indexPath.row]
-        thumbUpUserForComment = thumbUpUsers[indexPath.row]
-        print(thumbUpUserForComment)
+        if tableView == tableView1{
+        
+            dynamicForComment = dynamicOnline[indexPath.row]
+            thumbUpUserForComment = dynamicOnline[indexPath.row].thumbUpUser
+        
+        }else if tableView == tableView2{
+            dynamicForComment = dynamicParty[indexPath.row]
+            thumbUpUserForComment = dynamicParty[indexPath.row].thumbUpUser
+        }else if tableView == tableView3{
+            dynamicForComment = dynamicTravel[indexPath.row]
+            thumbUpUserForComment = dynamicTravel[indexPath.row].thumbUpUser
+        }else{
+            dynamicForComment = dynamicCar[indexPath.row]
+            thumbUpUserForComment = dynamicCar[indexPath.row].thumbUpUser
+        }
+        
+//        dynamicForComment = dynamicOnline[indexPath.row]
+//        thumbUpUserForComment = thumbUpUsers[indexPath.row]
+//        print(thumbUpUserForComment)
+        self.tabBarController?.tabBar.hidden = true
         self.performSegueWithIdentifier("meetsToComment", sender: self)
         
     }
@@ -571,7 +674,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
                 dynamicOnline[btn.tag].thumbUpNumber = dynamicOnline[btn.tag].thumbUpNumber + 1
                 
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    self.thumbUpHttp("like", timelineID: self.dynamicOnline[btn.tag].dynamicId,tag: btn.tag/10000)
+                    self.thumbUpHttp("like", timelineID: self.dynamicOnline[btn.tag].dynamicId,tag: btn.tag/10000,type: 0)
                 })
                 
                 
@@ -581,7 +684,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
                 dynamicOnline[btn.tag].isThumbUp = false
                 dynamicOnline[btn.tag].thumbUpNumber = dynamicOnline[btn.tag].thumbUpNumber - 1
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    self.thumbUpHttp("unlike", timelineID: self.dynamicOnline[btn.tag].dynamicId,tag: btn.tag/10000)
+                    self.thumbUpHttp("unlike", timelineID: self.dynamicOnline[btn.tag].dynamicId,tag: btn.tag/10000,type: 0)
                 })
             }
             
@@ -609,14 +712,14 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
                 dynamicParty[number].isThumbUp = true
                 dynamicParty[number].thumbUpNumber = dynamicParty[number].thumbUpNumber + 1
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    self.thumbUpHttp("like", timelineID: self.dynamicParty[btn.tag].dynamicId,tag: btn.tag)
+                    self.thumbUpHttp("like", timelineID: self.dynamicParty[number].dynamicId,tag: number,type: 1)
                 })
             }else{
                 
                 dynamicParty[number].isThumbUp = false
                 dynamicParty[number].thumbUpNumber = dynamicParty[number].thumbUpNumber - 1
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    self.thumbUpHttp("unlike", timelineID: self.dynamicParty[btn.tag].dynamicId,tag: btn.tag)
+                    self.thumbUpHttp("unlike", timelineID: self.dynamicParty[number].dynamicId,tag: number,type: 1)
                 })
             }
             
@@ -643,14 +746,14 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
                 dynamicTravel[number].isThumbUp = true
                 dynamicTravel[number].thumbUpNumber = dynamicTravel[number].thumbUpNumber + 1
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    self.thumbUpHttp("like", timelineID: self.dynamicTravel[btn.tag].dynamicId,tag: btn.tag)
+                    self.thumbUpHttp("like", timelineID: self.dynamicTravel[number].dynamicId,tag: number,type: 2)
                 })
             }else{
                 
                 dynamicTravel[number].isThumbUp = false
                 dynamicTravel[number].thumbUpNumber = dynamicTravel[number].thumbUpNumber - 1
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    self.thumbUpHttp("unlike", timelineID: self.dynamicTravel[btn.tag].dynamicId,tag: btn.tag)
+                    self.thumbUpHttp("unlike", timelineID: self.dynamicTravel[number].dynamicId,tag: number,type: 2)
                 })
             }
             
@@ -676,14 +779,14 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
                 dynamicCar[number].isThumbUp = true
                 dynamicCar[number].thumbUpNumber = dynamicCar[number].thumbUpNumber + 1
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    self.thumbUpHttp("like", timelineID: self.dynamicCar[btn.tag].dynamicId,tag: btn.tag)
+                    self.thumbUpHttp("like", timelineID: self.dynamicCar[number].dynamicId,tag: number,type: 3)
                 })
             }else{
                 
                 dynamicCar[number].isThumbUp = false
                 dynamicCar[number].thumbUpNumber = dynamicCar[number].thumbUpNumber - 1
                 dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
-                    self.thumbUpHttp("unlike", timelineID: self.dynamicCar[btn.tag].dynamicId,tag: btn.tag)
+                    self.thumbUpHttp("unlike", timelineID: self.dynamicCar[number].dynamicId,tag: number,type: 3)
                 })
             }
             
@@ -883,6 +986,11 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             let VC = segue.destinationViewController as! PersonalViewController
             VC.name = name
             print("...\(name)")
+            if name == identifierValue{
+                VC.isYourself = true
+            }else{
+                VC.isYourself = false
+            }
         
         }else if segue.identifier == "meetsToComment"{
             let VC = segue.destinationViewController as! CommentViewController
@@ -987,7 +1095,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
     func postTimeLine(){
         
         
-        let urlString:String = "\(ip)/app.timeline.getByFollowing?account=\(identifierValue)"
+        let urlString:String = "\(ip)/app.timeline.getAll?account=\(identifierValue)&count=30"
         let url: NSURL = NSURL(string: urlString)!
         let request1: NSURLRequest = NSURLRequest(URL: url)
         let response: AutoreleasingUnsafeMutablePointer<NSURLResponse?>=nil
@@ -1052,11 +1160,23 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
                             let commentsNumber = i.objectForKey("commentCount") as! Int
                             
                             let dynamicModel = DynamicModel(userPortraitUrl: userPortraitUrl, userName: userName, dynamic: dynamic, thumbUpNumber: thumbUpNumber, isThumbUp: isThumbUp, joinNumber: 0, isJoin: false, commentsNumber: commentsNumber, thumbUpUser: thumbUpUsers[number],timeShow: timeShow,dynamicId: dynamicId)
-                            
-                            dynamicOnline.append(dynamicModel)
+                            let type = i.objectForKey("type") as! NSNumber
+                            switch type {
+                            case 0:
+                                dynamicOnline.append(dynamicModel)
+                            case 1:
+                                dynamicParty.append(dynamicModel)
+                            case 2:
+                                dynamicTravel.append(dynamicModel)
+                            case 3:
+                                dynamicCar.append(dynamicModel)
+                            default:
+                                return
+                            }
                             
                             number += 1
                         }
+                        
 
                     case "630":
                         print("评论加载失败")
@@ -1087,7 +1207,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
         
     }
     
-    func thumbUpHttp(islike:String,timelineID:Int,tag:Int){
+    func thumbUpHttp(islike:String,timelineID:Int,tag:Int,type:Int){
         
         do{
             
@@ -1098,7 +1218,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             let request = NSMutableURLRequest(URL:url)
             let body = "account=\(identifierValue)&timelineID=\(timelineID)"
             //编码POST数据
-            let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+            let postData = body.dataUsingEncoding(NSUTF8StringEncoding)
             //保用 POST 提交
             request.HTTPMethod = "POST"
             request.HTTPBody = postData
@@ -1112,20 +1232,78 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
             switch status {
             case "640":
                 print("点赞成功")
-                if userDefault.objectForKey("portrait") as! String != ""{
-                    thumbUpUsers[tag].append(Friends(id: identifierValue, name: identifierValue, portrait: userDefault.objectForKey("portrait") as! String))
-                }else{
-                    thumbUpUsers[tag].append(Friends(id: identifierValue, name: identifierValue, portrait: portrait))
+                
+                switch type {
+                case 0:
+                    if userDefault.objectForKey("portrait") as! String != ""{
+                        dynamicOnline[tag].thumbUpUser.append(Friends(id: identifierValue, name: identifierValue, portrait: userDefault.objectForKey("portrait") as! String))
+                    }else{
+                        dynamicOnline[tag].thumbUpUser.append(Friends(id: identifierValue, name: identifierValue, portrait: portrait))
+                    }
+                case 1:
+                    if userDefault.objectForKey("portrait") as! String != ""{
+                        dynamicParty[tag].thumbUpUser.append(Friends(id: identifierValue, name: identifierValue, portrait: userDefault.objectForKey("portrait") as! String))
+                    }else{
+                        dynamicParty[tag].thumbUpUser.append(Friends(id: identifierValue, name: identifierValue, portrait: portrait))
+                    }
+                case 2:
+                    if userDefault.objectForKey("portrait") as! String != ""{
+                        dynamicTravel[tag].thumbUpUser.append(Friends(id: identifierValue, name: identifierValue, portrait: userDefault.objectForKey("portrait") as! String))
+                    }else{
+                        dynamicTravel[tag].thumbUpUser.append(Friends(id: identifierValue, name: identifierValue, portrait: portrait))
+                    }
+                case 3:
+                    if userDefault.objectForKey("portrait") as! String != ""{
+                        dynamicCar[tag].thumbUpUser.append(Friends(id: identifierValue, name: identifierValue, portrait: userDefault.objectForKey("portrait") as! String))
+                    }else{
+                        dynamicCar[tag].thumbUpUser.append(Friends(id: identifierValue, name: identifierValue, portrait: portrait))
+                    }
+                default:
+                    return
                 }
+                
+                
             case "650":
                 print("点赞失败")
             case "660":
                 print("取消点赞成功")
-                for i in 0...thumbUpUsers[tag].count-1{
-                    if thumbUpUsers[tag][i].id == identifierValue{
-                        thumbUpUsers[tag].removeAtIndex(i)
+                switch type {
+                case 0:
+                    for i in 0...dynamicOnline[tag].thumbUpUser.count-1{
+                        if dynamicOnline[tag].thumbUpUser[i].id == identifierValue{
+                            dynamicOnline[tag].thumbUpUser.removeAtIndex(i)
+                        }
+                    
                     }
+                case 1:
+                    for i in 0...dynamicParty[tag].thumbUpUser.count-1{
+                        if dynamicParty[tag].thumbUpUser[i].id == identifierValue{
+                            dynamicParty[tag].thumbUpUser.removeAtIndex(i)
+                        }
+                        
+                    }
+                case 2:
+                    for i in 0...dynamicTravel[tag].thumbUpUser.count-1{
+                        if dynamicTravel[tag].thumbUpUser[i].id == identifierValue{
+                            dynamicTravel[tag].thumbUpUser.removeAtIndex(i)
+                        }
+                        
+                    }
+                case 3:
+                    for i in 0...dynamicCar[tag].thumbUpUser.count-1{
+                        if dynamicCar[tag].thumbUpUser[i].id == identifierValue{
+                            dynamicCar[tag].thumbUpUser.removeAtIndex(i)
+                        }
+                        
+                    }
+                default:
+                    return
                 }
+//                for i in 0...thumbUpUsers[tag].count-1{
+//                    if thumbUpUsers[tag][i].id == identifierValue{
+//                        thumbUpUsers[tag].removeAtIndex(i)
+//                    }
+//                }
             case "670":
                 print("取消点赞失败")
             default:

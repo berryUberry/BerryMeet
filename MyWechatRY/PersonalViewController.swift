@@ -21,6 +21,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
     /////////////
     
     var DyHeight = Array<CGFloat>()
+    var isYourself:Bool = false
     var name:String!
     let identifierValue = String(userDefault.objectForKey("identifier")!)
     
@@ -121,6 +122,10 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
 //        personalDynamic.append(a)
 //        personalDynamic.append(b)
 //        personalDynamic.append(c)
+        if isYourself == true{
+            addButton.hidden = true
+            chatButton.hidden = true
+        }
         
         nameLabel.text = name
         chatButton.layer.cornerRadius = 10
@@ -188,6 +193,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         ce.thumbUp.tag = indexPath.row
         ce.thumbUp.addTarget(self, action: #selector(PersonalViewController.doThumbUp), forControlEvents: .TouchUpInside)
         
+        ce.join.hidden = true
         
         if userDefault.objectForKey("\(personalDynamic[indexPath.row].userName)Head") as? NSData != nil{
         
@@ -318,6 +324,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
                 
                 let userData = userDefault.objectForKey("\(identifierValue)friendsList") as! NSData
                 let user = NSKeyedUnarchiver.unarchiveObjectWithData(userData) as! Array<Friends>
+                print(user.count)
                 for i in 0...user.count-1{
                     if friendsList[i].id == name{
                         friendsList.removeAtIndex(i)
@@ -510,7 +517,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
             let request = NSMutableURLRequest(URL:url)
             let body = "account=\(identifierValue)&timelineID=\(timelineID)"
             //编码POST数据
-            let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+            let postData = body.dataUsingEncoding(NSUTF8StringEncoding)
             //保用 POST 提交
             request.HTTPMethod = "POST"
             request.HTTPBody = postData

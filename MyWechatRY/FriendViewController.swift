@@ -14,6 +14,7 @@ import UIKit
 class FriendViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     let identifierValue = String(userDefault.objectForKey("identifier")!)
+    var selectedName:String!
     @IBOutlet weak var friendsListTableView: UITableView!
     
     @IBAction func addFriendsAction(sender: AnyObject) {
@@ -72,17 +73,19 @@ class FriendViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let conversationViewController = ConversationViewController()
-        conversationViewController.targetId = friendsList[indexPath.row].id
-        //conversationViewController.userName = friendsList[indexPath.row].name
-        conversationViewController.conversationType = .ConversationType_PRIVATE
-        conversationViewController.title = friendsList[indexPath.row].name
+//        let conversationViewController = ConversationViewController()
+//        conversationViewController.targetId = friendsList[indexPath.row].id
+//        //conversationViewController.userName = friendsList[indexPath.row].name
+//        conversationViewController.conversationType = .ConversationType_PRIVATE
+//        conversationViewController.title = friendsList[indexPath.row].name
+//        
+//        
+//        self.navigationController?.pushViewController(conversationViewController, animated: true)
+//        self.tabBarController?.tabBar.hidden = true
+        selectedName = friendsList[indexPath.row].id
+        self.performSegueWithIdentifier("friendToPersonal", sender: self)
         
-        
-        self.navigationController?.pushViewController(conversationViewController, animated: true)
         self.tabBarController?.tabBar.hidden = true
-
-        
         
     }
     
@@ -181,6 +184,14 @@ class FriendViewController: UIViewController,UITableViewDelegate,UITableViewData
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 60
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "friendToPersonal"{
+            let VC = segue.destinationViewController as! PersonalViewController
+            VC.name = selectedName
+            VC.isYourself = false
+        }
     }
 
 }

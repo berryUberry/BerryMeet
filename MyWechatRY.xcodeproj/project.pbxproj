@@ -32,6 +32,7 @@
 		D5850C301CE40F7000953C8D /* AddFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5850C2F1CE40F7000953C8D /* AddFriendsCell.swift */; };
 		D5AFBCFD1D1A6416001F2687 /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AFBCFC1D1A6416001F2687 /* CommentViewController.swift */; };
 		D5AFBCFF1D1B0E09001F2687 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AFBCFE1D1B0E09001F2687 /* CommentModel.swift */; };
+		D5AFBD011D1BF13A001F2687 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AFBD001D1BF13A001F2687 /* CommentCell.swift */; };
 		F5564A1AFE5337D80DD6D958 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F72FD5E3B1BDD6616BE82E33 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		D5850C2F1CE40F7000953C8D /* AddFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendsCell.swift; sourceTree = "<group>"; };
 		D5AFBCFC1D1A6416001F2687 /* CommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		D5AFBCFE1D1B0E09001F2687 /* CommentModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		D5AFBD001D1BF13A001F2687 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		F72FD5E3B1BDD6616BE82E33 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 				D5850C2F1CE40F7000953C8D /* AddFriendsCell.swift */,
 				D50AA7721CFC52CF0011CD96 /* DynamicCell.swift */,
 				D50AA7781CFC98120011CD96 /* DynamicCell.xib */,
+				D5AFBD001D1BF13A001F2687 /* CommentCell.swift */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				D5AFBCFF1D1B0E09001F2687 /* CommentModel.swift in Sources */,
 				D51640311CDC655000262C70 /* FriendCell.swift in Sources */,
 				D51640331CDC65C600262C70 /* FriendViewController.swift in Sources */,
+				D5AFBD011D1BF13A001F2687 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

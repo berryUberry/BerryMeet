@@ -326,7 +326,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 let request = NSMutableURLRequest(URL:url)
                 let body = "account=\(accountTextField.text!)&password=\(passwordTextField.text!)"
                 //编码POST数据
-                let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+                let postData = body.dataUsingEncoding(NSUTF8StringEncoding)
                 //保用 POST 提交
                 request.HTTPMethod = "POST"
                 request.HTTPBody = postData
@@ -344,7 +344,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 switch status {
                 case "200":
                     print("登录成功")
-                    
+                    userDefault.setObject(self.passwordTextField.text!, forKey: "password")
                     let userInfo = dic.objectForKey("userInfo") as! NSDictionary
                     
                     let userIsDefaultAvatar = userInfo.objectForKey("isDefaultAvatar") as! Bool
@@ -428,7 +428,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                     let request = NSMutableURLRequest(URL:url)
                     let body = "account=\(accountTextField.text!)"
                     //编码POST数据
-                    let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+                    let postData = body.dataUsingEncoding(NSUTF8StringEncoding)
                     //保用 POST 提交
                     request.HTTPMethod = "POST"
                     request.HTTPBody = postData
@@ -534,7 +534,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 let request = NSMutableURLRequest(URL:url)
                 let body = "account=\(nameTextField.text!)&password=\(passwordTextField2.text!)"
                 //编码POST数据
-                let postData = body.dataUsingEncoding(NSASCIIStringEncoding)
+                let postData = body.dataUsingEncoding(NSUTF8StringEncoding)
                 //保用 POST 提交
                 request.HTTPMethod = "POST"
                 request.HTTPBody = postData
