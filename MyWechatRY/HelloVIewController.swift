@@ -22,6 +22,8 @@ class HelloVIewController: UIViewController,UIScrollViewDelegate {
     var addImage:UIImageView!
     var addImage2:UIImageView!
     
+    
+    //登录注册按钮操作
     @IBAction func toLoginup(sender: AnyObject) {
         if sender as! NSObject == loginButton{
             flag = true
@@ -41,11 +43,14 @@ class HelloVIewController: UIViewController,UIScrollViewDelegate {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+    
+        
+        //scrollView
         scrollView = UIScrollView(frame: CGRectMake(0,0,self.view.bounds.width,self.view.bounds.height))
         medel = PageControlModel(images: trueMedel)
         count = trueMedel.count
         scrollView.contentSize = CGSizeMake(self.view.bounds.width * CGFloat(count), self.view.bounds.height)
-        
+    
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.scrollsToTop = false
@@ -65,12 +70,15 @@ class HelloVIewController: UIViewController,UIScrollViewDelegate {
             scrollView.addSubview(image)
         }
         
+        
+        //pageControl
         pageControl.backgroundColor = UIColor.clearColor()
         pageControl.currentPage = 0
         pageControl.numberOfPages = count
         pageControl.addTarget(self, action: #selector(HelloVIewController.pageChanged), forControlEvents: .ValueChanged)
         
         
+        //动画实现
         addImage = UIImageView(frame: CGRectMake(140, 335, 1, 1))
         addImage.image = UIImage(named: "1")
         scrollView.addSubview(addImage)
@@ -83,7 +91,6 @@ class HelloVIewController: UIViewController,UIScrollViewDelegate {
         view.bringSubviewToFront(pageControl)
         view.bringSubviewToFront(loginView)
         
-        //addImage.layer.setAffineTransform(CGAffineTransformMakeScale(0.01, 0.01))
         UIView.animateWithDuration(0.3, delay: 0.5, options: .CurveLinear, animations: {
             //addImage.layer.setAffineTransform(CGAffineTransformMakeScale(1.6, 1.6))
             self.addImage.frame = CGRectMake(50, 250, 112, 112)
@@ -116,7 +123,7 @@ class HelloVIewController: UIViewController,UIScrollViewDelegate {
         
         
     }
-    
+    //参数传递，判断到登录还是注册界面
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         let nextView = segue.destinationViewController as! LoginViewController
@@ -130,7 +137,7 @@ class HelloVIewController: UIViewController,UIScrollViewDelegate {
     }
     
     
-    
+    //气泡动画
     func scrollViewDidScroll(scrollView: UIScrollView) {
         //print("a")
         //print(scrollView.contentOffset)

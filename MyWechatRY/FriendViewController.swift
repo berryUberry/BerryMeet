@@ -18,9 +18,7 @@ class FriendViewController: UIViewController,UITableViewDelegate,UITableViewData
     @IBOutlet weak var friendsListTableView: UITableView!
     
     @IBAction func addFriendsAction(sender: AnyObject) {
-        //let addFriendsViewController = AddFriendsViewController()
-        
-        //self.navigationController?.pushViewController(addFriendsViewController, animated: true)
+
         self.performSegueWithIdentifier("addfriends", sender: self)
         self.tabBarController?.tabBar.hidden = true
         
@@ -28,23 +26,7 @@ class FriendViewController: UIViewController,UITableViewDelegate,UITableViewData
     override func viewWillAppear(animated: Bool) {
         
         super.viewWillAppear(animated)
-//        let friends2 = userDefault.objectForKey("\(self.identifierValue)")
-//        if friends2 != nil{
-//            friends = userDefault.objectForKey("\(self.identifierValue)") as! Array<String>
-//        
-//        }
-//        
-//        print(friends2)
-//        print("asdfasdfsdfddddddddsaaaa")
-//        if friends2 != nil && friendFlag == true{
-//            for i in friends2 as! Array<String>{
-//                print(i)
-//                let friends3 = Friends(id: i, name: i, portrait: portrait)
-//                friendsList.append(friends3)
-//                
-//            }
-//        }
-        //
+
         print("friendList\(friendsList.count)")
         if friendFlag == true{
             let userData = userDefault.objectForKey("\(identifierValue)friendsList") as! NSData
@@ -73,15 +55,7 @@ class FriendViewController: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        let conversationViewController = ConversationViewController()
-//        conversationViewController.targetId = friendsList[indexPath.row].id
-//        //conversationViewController.userName = friendsList[indexPath.row].name
-//        conversationViewController.conversationType = .ConversationType_PRIVATE
-//        conversationViewController.title = friendsList[indexPath.row].name
-//        
-//        
-//        self.navigationController?.pushViewController(conversationViewController, animated: true)
-//        self.tabBarController?.tabBar.hidden = true
+
         selectedName = friendsList[indexPath.row].id
         self.performSegueWithIdentifier("friendToPersonal", sender: self)
         
@@ -107,27 +81,8 @@ class FriendViewController: UIViewController,UITableViewDelegate,UITableViewData
             
             ce.photoImage.image = UIImage(named: "xixi")
             
-            //            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
-            //                let imageURL = NSURL(string: portrait)
-            //                let imageData = NSData(contentsOfURL: imageURL!)
-            //                let smallImage = UIImageJPEGRepresentation(UIImage(data: imageData!)!, 0.3)
-            //                dispatch_async(dispatch_get_main_queue(), {
-            //                    cell.photoImage.image = UIImage(data: smallImage!)
-            //
-            //
-            //                    userDefault.setObject(smallImage, forKey: "portrait")
-            //                    print("1")
-            //                })
-            //
-            //
-            //
-            //            }
-        }else{
             
-            //            let userPortraitData:NSData = userDefault.objectForKey("portrait") as! NSData
-            //
-            //            let userPortrait = UIImage(data: userPortraitData)
-            //            cell.photoImage.image = userPortrait
+        }else{
             
             
             if userDefault.objectForKey("\(userPortraitFlag[indexPath.row].id)Head") as? NSData != nil{

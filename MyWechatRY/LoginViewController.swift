@@ -50,6 +50,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //accountUsers = Account()
+        
+        //代码添加界面
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillAppear(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.keyboardWillDisappear(_:)), name:UIKeyboardWillHideNotification, object: nil)
@@ -314,7 +316,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         
     }
     
-    
+    //http请求
     func connectHttp(){
         do{
             if self.loginRegistButton.titleLabel?.text == "登录"{
@@ -330,7 +332,6 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
                 //保用 POST 提交
                 request.HTTPMethod = "POST"
                 request.HTTPBody = postData
-                
                 
                 let data:NSData = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response)
                 let dict:AnyObject? = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)

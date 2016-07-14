@@ -166,11 +166,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate,RCIMUserInfoDataSource,RCI
         RCIM.sharedRCIM().receiveMessageDelegate = self
         
         if userDefault.objectForKey("identifier") != nil{
+            
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             
             let initialViewController = storyboard.instantiateViewControllerWithIdentifier("tabbarController") as! UITabBarController
+            
             
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()

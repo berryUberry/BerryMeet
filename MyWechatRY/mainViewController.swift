@@ -107,26 +107,7 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
         
         /////////
         
-        ////////数据模拟
-//        let a = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "monzy", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 5,isThumbUp:false, joinNumber:2,isJoin:false, commentsNumber: 4)
-//        let b = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "pt", dynamic: "6月20号中午12点嘉定校区到虹桥火车站，求拼车", thumbUpNumber: 0,isThumbUp: false, joinNumber: 0, isJoin: false,commentsNumber: 0)
-//        let c = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "lynn", dynamic: "7月1号。。。。。。。。。。。。。。。。。。。。。。。。", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0)
-//        dynamicOnline.append(a)
-//        dynamicOnline.append(b)
-//        dynamicOnline.append(c)
-//        let d = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "wang", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0,isThumbUp: false, joinNumber:0,isJoin: false, commentsNumber: 0)
-//        let e = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "berry", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0, isThumbUp: false,joinNumber: 6,isJoin: false, commentsNumber: 0)
-//        let f = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "berry2", dynamic: "7月1号嘉实广场求聚餐", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0)
-//        
-//        
-//        dynamicTravel.append(d)
-//        dynamicTravel.append(e)
-//        dynamicTravel.append(f)
-//        
-//        dynamicCar.append(a)
-//        dynamicParty.append(b)
-        
-        /////////////////////
+
         
         super.viewDidLoad()
         segmentedControl3 = XMSegmentedControl(frame: CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)! + 20, width: self.view.frame.width, height: 44), segmentTitle: ["线上", "聚会", "旅行","其他"], selectedItemHighlightStyle: XMSelectedItemHighlightStyle.TopEdge)
@@ -157,32 +138,6 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
         scrollView.addSubview(tableView2)
         scrollView.addSubview(tableView3)
         scrollView.addSubview(tableView4)
-//        view.addConstraints([
-//            
-//            NSLayoutConstraint(item: tableView1, attribute: .Top, relatedBy: .Equal, toItem: self.scrollView, attribute: .Top, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView1, attribute: .Left, relatedBy: .Equal, toItem: self.scrollView, attribute: .Left, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView1, attribute: .Bottom, relatedBy: .Equal, toItem: self.scrollView, attribute: .Bottom, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView1, attribute: .Right, relatedBy: .Equal, toItem: tableView2, attribute: .Left, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView1, attribute: .Width, relatedBy: .Equal, toItem: self.scrollView, attribute: .Width, multiplier: 1/4, constant: 0),
-//            
-//            NSLayoutConstraint(item: tableView2, attribute: .Top, relatedBy: .Equal, toItem: self.scrollView, attribute: .Top, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView2, attribute: .Left, relatedBy: .Equal, toItem: tableView1, attribute: .Right, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView2, attribute: .Bottom, relatedBy: .Equal, toItem: self.scrollView, attribute: .Bottom, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView2, attribute: .Width, relatedBy: .Equal, toItem: self.scrollView, attribute: .Width, multiplier: 1/4, constant: 0),
-//            
-//            NSLayoutConstraint(item: tableView3, attribute: .Top, relatedBy: .Equal, toItem: self.scrollView, attribute: .Top, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView3, attribute: .Left, relatedBy: .Equal, toItem: tableView2, attribute: .Right, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView3, attribute: .Bottom, relatedBy: .Equal, toItem: self.scrollView, attribute: .Bottom, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView3, attribute: .Width, relatedBy: .Equal, toItem: self.scrollView, attribute: .Width, multiplier: 1/4, constant: 0),
-//            
-//            NSLayoutConstraint(item: tableView4, attribute: .Top, relatedBy: .Equal, toItem: self.scrollView, attribute: .Top, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView4, attribute: .Left, relatedBy: .Equal, toItem: tableView3, attribute: .Right, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView4, attribute: .Bottom, relatedBy: .Equal, toItem: self.scrollView, attribute: .Bottom, multiplier: 1, constant: 8),
-//            NSLayoutConstraint(item: tableView4, attribute: .Width, relatedBy: .Equal, toItem: self.scrollView, attribute: .Width, multiplier: 1/4, constant: 0),
-//            
-//            
-//            ])
-        
         
         tableView1.delegate = self
         tableView1.dataSource = self
@@ -199,12 +154,6 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
         tableView4.registerNib(UINib(nibName: "DynamicCell",bundle: nil), forCellReuseIdentifier: "cell")
         scrollView.scrollEnabled = false
         self.view.addSubview(scrollView)
-        
-        
-        
-        
-        
-        
         
         
         
@@ -1002,94 +951,6 @@ class mainViewController: UIViewController,XMSegmentedControlDelegate,UIScrollVi
         
     }
    
-    
-    
-//    func getTimeline(account:String){
-//        let urlString:String = "\(ip)/app.timeline.get?account=\(account)"
-//        let url: NSURL = NSURL(string: urlString)!
-//        let request1: NSURLRequest = NSURLRequest(URL: url)
-//        let response: AutoreleasingUnsafeMutablePointer<NSURLResponse?>=nil
-//        
-//        
-//        do{
-//            
-//            let dataVal = try NSURLConnection.sendSynchronousRequest(request1, returningResponse: response)
-//            
-//            print(response)
-//            do {
-//                if let jsonResult = try NSJSONSerialization.JSONObjectWithData(dataVal, options: []) as? NSDictionary {
-//                    print("Synchronous\(jsonResult)")
-//                    
-//                    
-//                    let status = jsonResult.objectForKey("status") as! String
-//                    switch status {
-//                    case "620":
-//                        let timelines = jsonResult.objectForKey("timelines") as! [NSDictionary]
-//                        for i in timelines{
-//                            
-//                            let userInfo = i.objectForKey("userInfo") as! NSDictionary
-//                            let isDefaultAvatar = userInfo.objectForKey("isDefaultAvatar") as! Bool
-//                            let userPortraitUrl:String!
-//                            if isDefaultAvatar == false{
-//                                userPortraitUrl = userInfo.objectForKey("avatarURL") as! String
-//                            }else{
-//                                userPortraitUrl = portrait
-//                            }
-//                            let userName = userInfo.objectForKey("_id") as! String
-//                            let dynamic = i.objectForKey("text") as! String
-//                            let timeStamp = i.objectForKey("timeStamp") as! String
-//                            let timeShow = timeStampToString(timeStamp)
-//                            let likedUser = i.objectForKey("liked") as! [NSDictionary]
-//                            let thumbUpNumber = likedUser.count
-//                            var isThumbUp = false
-//                            var thumbUpUsers = Array<Friends>()
-//                            for j in likedUser{
-//                                let id = j.objectForKey("_id") as! String
-//                                if id == identifierValue{
-//                                    isThumbUp = true
-//                                }
-//                                let isDefaultAvatar = j.objectForKey("isDefaultAvatar") as! Bool
-//                                let userPortraitUrl:String!
-//                                if isDefaultAvatar == false{
-//                                    userPortraitUrl = j.objectForKey("avatarURL") as! String
-//                                }else{
-//                                    userPortraitUrl = portrait
-//                                }
-//                                let thumbUpUser = Friends(id: id, name: id, portrait: userPortraitUrl)
-//                                thumbUpUsers.append(thumbUpUser)
-//                            }
-//                            let commentsNumber = i.objectForKey("commentCount") as! Int
-//                            
-//                            let dynamicModel = DynamicModel(userPortraitUrl: userPortraitUrl, userName: userName, dynamic: dynamic, thumbUpNumber: thumbUpNumber, isThumbUp: isThumbUp, joinNumber: 0, isJoin: false, commentsNumber: commentsNumber, thumbUpUser: thumbUpUsers,timeShow: timeShow)
-//                        
-//                            dynamicOnline.append(dynamicModel)
-//                        }
-//                    case "630":
-//                        print("评论加载失败")
-//                    default:
-//                        return
-//                    }
-//                    
-//                    
-//                    
-//                    
-//                    
-//                    
-//                    
-//                }
-//            } catch let error as NSError {
-//                print(error.localizedDescription)
-//            }
-//            
-//            
-//            
-//        }catch let error as NSError
-//        {
-//            print(error.localizedDescription)
-//        }
-//    
-//    }
-//    
     
     
     func postTimeLine(){

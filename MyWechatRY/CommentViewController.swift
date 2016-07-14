@@ -57,7 +57,13 @@ class CommentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         expectedLabelSize = contentNSString.boundingRectWithSize(maxLabelSize, options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(16.0)], context: nil)
         commentView.frame = CGRectMake(0, 0, self.view.frame.width, expectedLabelSize.size.height+8+8+35+10)
 
-        commentHead.image = UIImage(data: userDefault.objectForKey("\(dynamic.userName)Head") as! NSData)
+        if userDefault.objectForKey("\(dynamic.userName)Head") as? NSData == nil{
+            commentHead.image = UIImage(named: "xixi")
+        
+        }else{
+            commentHead.image = UIImage(data: userDefault.objectForKey("\(dynamic.userName)Head") as! NSData)
+        }
+        
         commentName.setTitle(dynamic.userName, forState: .Normal)
         timeStampLabel.text = dynamic.timeShow
         commentText.text = dynamic.dynamic
@@ -107,6 +113,10 @@ class CommentViewController: UIViewController,UITableViewDelegate,UITableViewDat
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if indexPath.section == 0{
             personalName = thumbUpUsers[indexPath.row].id
+            self.performSegueWithIdentifier("commentToPersonal", sender: self)
+        }else{
+        
+            personalName = comments[indexPath.row].commentUser.id
             self.performSegueWithIdentifier("commentToPersonal", sender: self)
         }
     }
@@ -247,10 +257,12 @@ class CommentViewController: UIViewController,UITableViewDelegate,UITableViewDat
                     var avatarURL:String!
                     let dateTime = NSDate()
                     let timeInterval = dateTime.timeIntervalSince1970
-                    let headImage = userInfo.objectForKey("avatarURL") as! String
-                    let headImageURL = "\(avatarURLHeader)\(headImage)?v=\(Int(timeInterval))"
+                    
                     
                     if isDefaultAvatar == false{
+                        let headImage = userInfo.objectForKey("avatarURL") as! String
+                        let headImageURL = "\(avatarURLHeader)\(headImage)?v=\(Int(timeInterval))"
+                        
                         if userDefault.objectForKey("\(userName)Head") as? NSData != nil{
                             avatarURL = headImageURL
                         }else{
@@ -368,7 +380,7 @@ class CommentViewController: UIViewController,UITableViewDelegate,UITableViewDat
             addCommentTextField.returnKeyType = .Send
             
         }else{
-            addCommentTextField.returnKeyType = .Default
+            addCommentTextField.returnKeyType = .Send
         }
     }
     func keyboardWillAppear(notification: NSNotification) {

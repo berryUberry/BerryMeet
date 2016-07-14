@@ -15,7 +15,7 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
     var addFriends = Array<Friends>()
     let identifierValue = String(userDefault.objectForKey("identifier")!)
     var flag:Int!
-    
+    var selectedName:String!
     
     var timer:NSTimer!
     var time:Int = 0
@@ -183,14 +183,18 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let conversationViewController = ConversationViewController()
-        conversationViewController.targetId = addFriends[indexPath.row].id
-        //conversationViewController.userName = addFriends[indexPath.row].name
-        conversationViewController.conversationType = .ConversationType_PRIVATE
-        conversationViewController.title = addFriends[indexPath.row].name
+//        let conversationViewController = ConversationViewController()
+//        conversationViewController.targetId = addFriends[indexPath.row].id
+//        //conversationViewController.userName = addFriends[indexPath.row].name
+//        conversationViewController.conversationType = .ConversationType_PRIVATE
+//        conversationViewController.title = addFriends[indexPath.row].name
+//        
+//        
+//        self.navigationController?.pushViewController(conversationViewController, animated: true)
         
+        selectedName = addFriends[indexPath.row].id
+        self.performSegueWithIdentifier("addFriendsToPersonal", sender: self)
         
-        self.navigationController?.pushViewController(conversationViewController, animated: true)
         self.navigationController?.navigationBar.hidden = false
         self.tabBarController?.tabBar.hidden = true
         isFirst = true
@@ -386,17 +390,6 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
                 //存储NSData对象
                 userDefault.setObject(modelData, forKey: "\(identifierValue)friendsList")
                 
-                
-                
-                
-                
-                
-                
-//                userDefault.setObject(friendsList, forKey: "\(identifierValue)friendsList")
-//                let a = userDefault.objectForKey("\(identifierValue)friendsList")
-//                print("herehereherehere")
-//                print(a)
-                
                 dispatch_async(dispatch_get_main_queue(), {
                     self.waitView.hidden = true
                     self.waitIndicatotView.stopAnimating()
@@ -511,7 +504,13 @@ class AddFriendsViewController: UIViewController,UITableViewDelegate,UITableView
     
     
     
-    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "addFriendsToPersonal"{
+            let VC = segue.destinationViewController as! PersonalViewController
+            VC.name = selectedName
+            VC.isYourself = false
+        }
+    }
     
     
     

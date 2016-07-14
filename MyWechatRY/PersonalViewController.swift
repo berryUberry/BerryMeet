@@ -15,10 +15,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
     var dynamicForComment:DynamicModel!
     var thumbUpUsers = Array<Array<Friends>>()
     var thumbUpUserForComment = Array<Friends>()
-//    let a = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "Berry", dynamic: "sdfdsddhsdhdhdhdhdshkadhfjksdahfasdhjkfhasdfhsdajkfhaskjdfhaskdfhkasdflhasdkfkhasdjkfhsjadkfhjdsafhajsdkfhjaskdfhjkasdfhjasdhfeuiywuieyrfiuqweyriqweryqwejiwjefjkfhjsdgfasgdfhfjashfdhsadfhkfiuqwyeruiyerweqyiryqweuryeuwqirhjsdhfashfjkasdhfiuwyruiehfjsahfksadfjkashfyweuryhuewfhsjadfkjhdakfhsdjfhaskdfhsajdkfhakdsjfhklasdfhkjaslfdhjakdfhjkasdfhjsdkfhjkasdhfkjasdfasdhfjksdhfjsdhfjskahdfkjahsdlfjashdfahsdfjkhadfjkladhfadhfjksdhfkjsadhfjaksdfhdfiuwhefiuqhweufhuqwefhweuifheuwihfuwehfweufhuwehfuqwehfuwhqefdsjkfhaklsfjdsafhlkadjhfkhsdfhkjskdfhksdhfjskhdfkjshdfjksdhfjkasdjfhsakjdfhjksadhfjkashdfjkashfjsd", thumbUpNumber: 0,isThumbUp:false, joinNumber:0,isJoin:false, commentsNumber: 99,thumbUpUser: [])
-//    let b = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "Berry", dynamic: "sdlkfjkalsjdflajksdkfjaskldf", thumbUpNumber: 0,isThumbUp: false, joinNumber: 0, isJoin: false,commentsNumber: 0,thumbUpUser: [])
-//    let c = DynamicModel.init(userPortraitUrl: "http://ww1.sinaimg.cn/crop.0.0.1080.1080.1024/006411vBjw8esguzhdwj7j30u00u0dhf.jpg", userName: "Berry", dynamic: "asdf", thumbUpNumber: 0, isThumbUp: false,joinNumber: 0, isJoin: false,commentsNumber: 0,thumbUpUser: [])
-    /////////////
+
     
     var DyHeight = Array<CGFloat>()
     var isYourself:Bool = false
@@ -48,6 +45,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
                 self.addFriendHttp("follow")
             }
+
         }else{
             let alert = UIAlertController(title: "\(name)", message: nil, preferredStyle: .ActionSheet)
             let unfollow = UIAlertAction(title: "不再关注", style: .Destructive, handler: { (UIAlertAction) in
@@ -107,6 +105,29 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
                 self.tableView.reloadData()
             })
         }
+        
+        addButton.setTitle("关注", forState: .Normal)
+        
+        let userData = userDefault.objectForKey("\(identifierValue)friendsList") as! NSData
+        let user = NSKeyedUnarchiver.unarchiveObjectWithData(userData) as! Array<Friends>
+        
+        for i in user{
+        
+            if name == i.id{
+                addButton.setTitle("已关注", forState: .Normal)
+            }
+            
+        }
+        
+        if friendFlag == true{
+            for i in user{
+                print(i.id)
+                friendsList.append(i)
+            }
+            
+            friendFlag = false
+        }
+
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -130,18 +151,7 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
         nameLabel.text = name
         chatButton.layer.cornerRadius = 10
         addButton.layer.cornerRadius = 10
-        addButton.setTitle("关注", forState: .Normal)
         
-        let userData = userDefault.objectForKey("\(identifierValue)friendsList") as! NSData
-        let user = NSKeyedUnarchiver.unarchiveObjectWithData(userData) as! Array<Friends>
-
-        for i in user{
-            
-            if name == i.id{
-                addButton.setTitle("已关注", forState: .Normal)
-            }
-        
-        }
         
         if userDefault.objectForKey("\(name)Head") as? NSData != nil{
             
@@ -325,13 +335,17 @@ class PersonalViewController: UIViewController,UITableViewDataSource,UITableView
                 let userData = userDefault.objectForKey("\(identifierValue)friendsList") as! NSData
                 let user = NSKeyedUnarchiver.unarchiveObjectWithData(userData) as! Array<Friends>
                 print(user.count)
+                
                 for i in 0...user.count-1{
+                    print("iiii\(i)")
+                    
                     if friendsList[i].id == name{
                         friendsList.removeAtIndex(i)
                         //实例对象转换成NSData
                         let modelData:NSData = NSKeyedArchiver.archivedDataWithRootObject(friendsList)
                         //存储NSData对象
                         userDefault.setObject(modelData, forKey: "\(identifierValue)friendsList")
+                        break
                     }
                 
                 }
